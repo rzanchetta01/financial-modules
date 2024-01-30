@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppHouse.SharedKernel
+namespace AppHouse.SharedKernel.BaseClasses
 {
-    public class BaseDto
+    public class BaseException
     {
     }
 }
