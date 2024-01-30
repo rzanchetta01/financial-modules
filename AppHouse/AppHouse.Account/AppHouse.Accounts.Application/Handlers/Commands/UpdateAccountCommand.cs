@@ -6,23 +6,22 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Commands
 {
-    internal class CreateAccountCommand
+    internal class UpdateAccountCommand
         (
             IAccountService accountService,
-            IMediator mediator 
+            IMediator mediator
         )
-        : IRequestHandler<CreateAccountRequest, bool>
+        : IRequestHandler<UpdateAccountRequest, bool>
     {
         private readonly IAccountService _accountService = accountService;
         private readonly IMediator _mediator = mediator;
 
-
-        public async Task<bool> Handle(CreateAccountRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UpdateAccountRequest request, CancellationToken cancellationToken)
         {
-            await _accountService.Create(request.AccountDto, cancellationToken);
+            await _accountService.Update(request.AccountDto, cancellationToken);
 
-            await _mediator.Publish(new TEntityCreated<AccountDto>(request.AccountDto), cancellationToken);
+            await _mediator.Publish(new TEntityUpdated<AccountDto>(request.AccountDto), cancellationToken);
             return true;
-        }               
+        }
     }
 }
