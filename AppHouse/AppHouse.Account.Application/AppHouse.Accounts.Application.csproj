@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\Querries\" />
+    <Folder Include="Requests\Querries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppHouse.Account\AppHouse.Account.Core\AppHouse.Accounts.Core.csproj" />
+    <ProjectReference Include="..\AppHouse.SharedKernel\AppHouse.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>
