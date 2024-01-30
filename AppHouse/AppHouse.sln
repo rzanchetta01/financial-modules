@@ -5,19 +5,21 @@ VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppHouse.Aspire", "AppHouse.Aspire", "{B6FC55B7-9756-451B-8BD2-1C00674AC4F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHouse.Aspire.AppHost", "AppHouse.Aspire\AppHouse.Aspire\AppHouse.Aspire.AppHost\AppHouse.Aspire.AppHost.csproj", "{94B246E3-5529-4B5A-A1A9-AB282B782A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Aspire.AppHost", "AppHouse.Aspire\AppHouse.Aspire\AppHouse.Aspire.AppHost\AppHouse.Aspire.AppHost.csproj", "{94B246E3-5529-4B5A-A1A9-AB282B782A58}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Aspire.ServiceDefaults", "AppHouse.Aspire\AppHouse.Aspire\AppHouse.Aspire.ServiceDefaults\AppHouse.Aspire.ServiceDefaults.csproj", "{30FB2A8B-5F0E-4D41-A8D9-85E3A3526617}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppHouse.Account", "AppHouse.Account", "{95E6B386-35AA-4BE1-A366-848E22E09633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.SharedKernel", "AppHouse.SharedKernel\AppHouse.SharedKernel.csproj", "{92333EA2-C6E5-4140-8FE7-A2FF9D16310F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHouse.Account.Core", "AppHouse.Account\AppHouse.Account.Core\AppHouse.Account.Core.csproj", "{6FC5B8D6-924D-4019-A91C-6C89144E1973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Accounts.Tests", "AppHouse.Account\AppHouse.Accounts.Tests\AppHouse.Accounts.Tests.csproj", "{BBB159DA-8861-4939-B57A-CC0881F5FE0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHouse.Account.Domain", "AppHouse.Account\AppHouse.Account.Domain\AppHouse.Account.Domain.csproj", "{BA2B6840-34BA-4DED-AE15-866BFE6A3861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Accounts.Core", "AppHouse.Account\AppHouse.Accounts.Core\AppHouse.Accounts.Core.csproj", "{A3877A84-F33F-442A-B641-6D9DB99AE5E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHouse.Account.Application", "AppHouse.Account.Application\AppHouse.Account.Application.csproj", "{10DE8FEF-9430-4E0B-998D-C5732B3191EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Accounts.Domain", "AppHouse.Account\AppHouse.Accounts.Domain\AppHouse.Accounts.Domain.csproj", "{98DB9B87-AC32-42B2-95F6-FEB10948691D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHouse.SharedKernel", "AppHouse.SharedKernel\AppHouse.SharedKernel.csproj", "{92333EA2-C6E5-4140-8FE7-A2FF9D16310F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Accounts.Application", "AppHouse.Account\AppHouse.Accounts.Application\AppHouse.Accounts.Application.csproj", "{4BCB9311-2E00-4DF4-8721-832357EE32DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppHouse.Accounts", "AppHouse.Accounts", "{D0FD3C5F-438E-4A56-898D-981E06A7135F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,22 +35,26 @@ Global
 		{30FB2A8B-5F0E-4D41-A8D9-85E3A3526617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30FB2A8B-5F0E-4D41-A8D9-85E3A3526617}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30FB2A8B-5F0E-4D41-A8D9-85E3A3526617}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6FC5B8D6-924D-4019-A91C-6C89144E1973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FC5B8D6-924D-4019-A91C-6C89144E1973}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FC5B8D6-924D-4019-A91C-6C89144E1973}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FC5B8D6-924D-4019-A91C-6C89144E1973}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA2B6840-34BA-4DED-AE15-866BFE6A3861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA2B6840-34BA-4DED-AE15-866BFE6A3861}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA2B6840-34BA-4DED-AE15-866BFE6A3861}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA2B6840-34BA-4DED-AE15-866BFE6A3861}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10DE8FEF-9430-4E0B-998D-C5732B3191EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10DE8FEF-9430-4E0B-998D-C5732B3191EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10DE8FEF-9430-4E0B-998D-C5732B3191EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10DE8FEF-9430-4E0B-998D-C5732B3191EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92333EA2-C6E5-4140-8FE7-A2FF9D16310F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92333EA2-C6E5-4140-8FE7-A2FF9D16310F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92333EA2-C6E5-4140-8FE7-A2FF9D16310F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92333EA2-C6E5-4140-8FE7-A2FF9D16310F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB159DA-8861-4939-B57A-CC0881F5FE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB159DA-8861-4939-B57A-CC0881F5FE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB159DA-8861-4939-B57A-CC0881F5FE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB159DA-8861-4939-B57A-CC0881F5FE0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3877A84-F33F-442A-B641-6D9DB99AE5E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3877A84-F33F-442A-B641-6D9DB99AE5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3877A84-F33F-442A-B641-6D9DB99AE5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3877A84-F33F-442A-B641-6D9DB99AE5E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98DB9B87-AC32-42B2-95F6-FEB10948691D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DB9B87-AC32-42B2-95F6-FEB10948691D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98DB9B87-AC32-42B2-95F6-FEB10948691D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98DB9B87-AC32-42B2-95F6-FEB10948691D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BCB9311-2E00-4DF4-8721-832357EE32DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCB9311-2E00-4DF4-8721-832357EE32DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCB9311-2E00-4DF4-8721-832357EE32DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCB9311-2E00-4DF4-8721-832357EE32DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,9 +62,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{94B246E3-5529-4B5A-A1A9-AB282B782A58} = {B6FC55B7-9756-451B-8BD2-1C00674AC4F0}
 		{30FB2A8B-5F0E-4D41-A8D9-85E3A3526617} = {B6FC55B7-9756-451B-8BD2-1C00674AC4F0}
-		{6FC5B8D6-924D-4019-A91C-6C89144E1973} = {95E6B386-35AA-4BE1-A366-848E22E09633}
-		{BA2B6840-34BA-4DED-AE15-866BFE6A3861} = {95E6B386-35AA-4BE1-A366-848E22E09633}
-		{10DE8FEF-9430-4E0B-998D-C5732B3191EB} = {95E6B386-35AA-4BE1-A366-848E22E09633}
+		{BBB159DA-8861-4939-B57A-CC0881F5FE0F} = {D0FD3C5F-438E-4A56-898D-981E06A7135F}
+		{A3877A84-F33F-442A-B641-6D9DB99AE5E2} = {D0FD3C5F-438E-4A56-898D-981E06A7135F}
+		{98DB9B87-AC32-42B2-95F6-FEB10948691D} = {D0FD3C5F-438E-4A56-898D-981E06A7135F}
+		{4BCB9311-2E00-4DF4-8721-832357EE32DE} = {D0FD3C5F-438E-4A56-898D-981E06A7135F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AC39395-759C-4041-8CB3-8A5465D5696F}

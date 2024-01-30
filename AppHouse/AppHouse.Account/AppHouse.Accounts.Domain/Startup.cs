@@ -1,4 +1,4 @@
-﻿namespace AppHouse.Account.Domain
+﻿namespace AppHouse.Accounts.Domain
 {
     public class Startup
     {

@@ -1,6 +1,8 @@
-﻿namespace AppHouse.Account.Domain.Entity
+﻿using AppHouse.SharedKernel.BaseClasses;
+
+namespace AppHouse.Accounts.Domain.Entity
 {
-    public class Account : SharedKernel.BaseEntity
+    public class Account : BaseEntity
     {
         public required string Name { get; set; }
         public required string Email { get; set; }

@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.1-pre01" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\AppHouse.SharedKernel\AppHouse.SharedKernel.csproj" />
   </ItemGroup>
 
