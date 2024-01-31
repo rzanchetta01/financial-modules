@@ -3,5 +3,5 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Requests.Commands
 {
-    internal record DeleteAccountRequest(Guid Id) : IRequest<bool>;
+    public record DeleteAccountRequest(Guid Id) : IRequest<bool>;
 }

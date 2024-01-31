@@ -3,5 +3,5 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Requests.Commands
 {
-    internal record UpdateAccountRequest(AccountDto AccountDto) : IRequest<bool>;
+    public record UpdateAccountRequest(AccountDto AccountDto) : IRequest<bool>;
 }
