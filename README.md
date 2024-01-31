@@ -6,14 +6,13 @@ The goal of this project is to learn and create a modular monolith using the mos
 The tech stack consists of some of the new hot takes of .NET, including: 
 
 - .NET Aspire 
-- Native AOT 
 - EF Core 
 - MediatR 
 - FluentValidation 
-- RabbitMQ 
 - xUnit 
 - Postgres
-- Redis 
+- Redis
+- MongoDb
 - Docker 
 - CI/CD 
 - And much more!   
