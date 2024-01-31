@@ -5,19 +5,20 @@ var dbRedis = builder.AddRedisContainer("dbRedis");
 #endregion
 
 #region MongoDb
-var dbMongo = builder.AddContainer("dbMongo");
-var dbMongoConstring = builder.Configuration["db:mongo:constring"];
+var dbMongo = builder.AddMongoDBContainer("dbMongo")
+    .WithEnvironment("MONGO_INITDB_ROOT_USERNAME", "db:mongo:username")
+    .WithEnvironment("MONGO_INITDB_ROOT_PASSWORD", "db:mongo:password")
+    .WithVolumeMount(builder.Configuration["db:mongo:volume"], builder.Configuration["db:mongo:volume_path"], VolumeMountType.Named, isReadOnly: false);
+
 #endregion
 
 #region Postgres
 
 var dbPostgres = builder.AddPostgresContainer("dbPostgres", int.Parse(builder.Configuration["db:postgres:port"]), builder.Configuration["db:postgres:password"])
-    .WithEnvironment("POSTGRES_USER", builder.Configuration["db:postgres:user"])
+    .WithEnvironment("POSTGRES_USER", builder.Configuration["db:postgres:username"])
     .WithEnvironment("POSTGRES_PASSWORD", builder.Configuration["db:postgres:password"])
-    .WithVolumeMount(builder.Configuration["db:postgres:volume"], builder.Configuration["db:postgres:volume_path"], VolumeMountType.Named);
+    .WithVolumeMount(builder.Configuration["db:postgres:volume"], builder.Configuration["db:postgres:volume_path"], VolumeMountType.Named, isReadOnly: false);
 
-
-var dbPostgresConString =  builder.AddPostgresConnection("dbPostgresConString", builder.Configuration["db:postgres:constring"]);
 #endregion
 
 #region Services
@@ -25,10 +26,13 @@ var dbPostgresConString =  builder.AddPostgresConnection("dbPostgresConString", 
 #endregion
 
 #region Projects
-builder.AddProject<Projects.AppHouseApi>("apphouseapi")
+builder.AddProject<Projects.AppHouse_BootsStrap>("apphouse.bootsstrap")
     .WithReference(dbPostgres)
-    .WithReference(dbPostgresConString);
+    .WithReference(dbMongo)
+    .WithReference(dbRedis);
+
 #endregion
+
 
 #pragma warning restore CS8604 // Possible null reference argument end.
 builder.Build().Run();

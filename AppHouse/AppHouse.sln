@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Accounts.Applicati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppHouse.Accounts", "AppHouse.Accounts", "{D0FD3C5F-438E-4A56-898D-981E06A7135F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouseApi", "AppHouseApi\AppHouseApi.csproj", "{CD5BB267-CBC3-443F-B91F-5272D7983466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.BootsStrap", "AppHouse.BootsStrap\AppHouse.BootsStrap.csproj", "{8D2BC647-6F03-4B2C-9770-E3A6D4C8089B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +57,10 @@ Global
 		{4BCB9311-2E00-4DF4-8721-832357EE32DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BCB9311-2E00-4DF4-8721-832357EE32DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BCB9311-2E00-4DF4-8721-832357EE32DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD5BB267-CBC3-443F-B91F-5272D7983466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD5BB267-CBC3-443F-B91F-5272D7983466}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD5BB267-CBC3-443F-B91F-5272D7983466}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD5BB267-CBC3-443F-B91F-5272D7983466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D2BC647-6F03-4B2C-9770-E3A6D4C8089B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D2BC647-6F03-4B2C-9770-E3A6D4C8089B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D2BC647-6F03-4B2C-9770-E3A6D4C8089B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D2BC647-6F03-4B2C-9770-E3A6D4C8089B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
