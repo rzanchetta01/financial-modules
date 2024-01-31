@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Exception\" />
-    <Folder Include="Mapping\" />
   </ItemGroup>
 
   <ItemGroup>

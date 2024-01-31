@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AppHouse.Accounts.Core
 {
-    internal class AccountsContext : DbContext
+    public class AccountsContext(DbContextOptions<AccountsContext> options) : DbContext(options)
     {
         public virtual DbSet<Account> Accounts { get; set; }
     }

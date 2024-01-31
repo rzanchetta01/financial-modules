@@ -5,7 +5,7 @@ using AppHouse.Accounts.Core.Interfaces;
 
 namespace AppHouse.Accounts.Core
 {
-    internal class AccountRepository(AccountsContext context) : IAccountRepository
+    public class AccountRepository(AccountsContext context) : IAccountRepository
     {
         private readonly AccountsContext _context = context;
 
