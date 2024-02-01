@@ -10,7 +10,7 @@ var dbMongo = builder.AddMongoDBContainer("dbMongo")
     .WithEnvironment("MONGO_INITDB_ROOT_PASSWORD", builder.Configuration["db:mongo:password"])
     .WithVolumeMount(builder.Configuration["db:mongo:data:volume_source"], builder.Configuration["db:mongo:data:volume_target"], VolumeMountType.Named)
     .WithVolumeMount(builder.Configuration["db:mongo:config:volume_source"], builder.Configuration["db:mongo:config:volume_target"], VolumeMountType.Named);
-    
+
 #endregion
 
 #region Postgres
@@ -20,8 +20,7 @@ var dbPostgres = builder
     .WithEnvironment("POSTGRES_USER", builder.Configuration["db:postgres:username"])
     .WithEnvironment("POSTGRES_PASSWORD", builder.Configuration["db:postgres:password"])
     .WithVolumeMount(builder.Configuration["db:postgres:volume_source"], builder.Configuration["db:postgres:volume_target"], VolumeMountType.Named)
-    .AddDatabase("db:postgres:database");;
-
+    .AddDatabase("db:postgres:database");
 
 #endregion
 

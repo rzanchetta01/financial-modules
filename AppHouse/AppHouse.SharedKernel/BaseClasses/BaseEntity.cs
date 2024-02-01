@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AppHouse.SharedKernel.BaseClasses
+﻿namespace AppHouse.SharedKernel.BaseClasses
 {
-    public class BaseEntity
+    public class BaseEntity(Guid? id = null, DateTime? dateCreated = null, bool? isActive = null)
     {
-        public Guid Id { get; set; }
-        public DateTime DateCreated { get; set; }
-        public bool IsActive { get; set; }
+        public Guid Id { get; set; } = id ?? Guid.NewGuid();
+        public DateTime DateCreated { get; set; } = dateCreated ?? DateTime.Now;
+        public bool IsActive { get; set; } = isActive ?? true;
     }
 }
