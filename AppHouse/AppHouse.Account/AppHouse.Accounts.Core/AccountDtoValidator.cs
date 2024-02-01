@@ -26,9 +26,6 @@ namespace AppHouse.Accounts.Core
             RuleFor(dto => dto.CreditScore).NotEmpty().GreaterThanOrEqualTo(0);
         }
 
-        private bool BeAValidDate(string date)
-        {
-            return DateTime.TryParse(date, out _);
-        }
+        private bool BeAValidDate(string date) => DateTime.TryParse(date, out _);
     }
 }
