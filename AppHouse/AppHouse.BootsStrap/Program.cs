@@ -4,7 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region Services DI
 AppHouse.Accounts.Application.StartupServices.AddAccountStartup(builder.Services);
-builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres");
+builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e => e.ConnectionString = builder.Configuration.GetConnectionString("account"));
+
 builder.AddServiceDefaults();
 builder.Services.AddMediatR(c => 
 {

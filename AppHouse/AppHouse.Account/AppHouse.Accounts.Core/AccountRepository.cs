@@ -12,11 +12,13 @@ namespace AppHouse.Accounts.Core
         public async Task CreateAsync(Account entity, CancellationToken token)
         {
             await _context.Accounts.AddAsync(entity, token);
+            await _context.SaveChangesAsync(token);
         }
 
         public async Task CreateRangeAsync(IEnumerable<Account> entities, CancellationToken token)
         {
             await _context.Accounts.AddRangeAsync(entities, token);
+            await _context.SaveChangesAsync(token);
         }
 
         public async Task<Account?> FindByIdAsync(Guid id, CancellationToken token)

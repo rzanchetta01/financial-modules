@@ -1,9 +1,7 @@
 ﻿using AppHouse.Accounts.Core.Interfaces;
 using AppHouse.Accounts.Domain.Dto;
-using AppHouse.Accounts.Domain.Entity;
-using AppHouse.SharedKernel;
+using AppHouse.Accounts.Domain.Mapping;
 using FluentValidation;
-using Mapster;
 
 namespace AppHouse.Accounts.Core
 {
@@ -20,14 +18,17 @@ namespace AppHouse.Accounts.Core
         public async Task Create(AccountDto dto, CancellationToken token)
         {
             var valid = await _accountDtoValidator.ValidateAsync(dto, token);
-            if (valid.IsValid)
-                await _accountRepository.CreateAsync(dto.Adapt<Account>(), token);
+            //if (valid.IsValid)
+                await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
         }
 
-        public async Task<AccountDto> FindById(Guid Id, CancellationToken token)
+        public async Task<AccountDto?> FindById(Guid Id, CancellationToken token)
         {
             var entity = await _accountRepository.FindByIdAsync(Id, token);
-            return entity.Adapt<AccountDto>();
+            if(entity is not null)
+                return AccountMapping.Map(entity);
+
+            return null;
         }
 
         public async Task Purge(Guid Id, CancellationToken token)
@@ -39,9 +40,7 @@ namespace AppHouse.Accounts.Core
         {
             var valid = await _accountDtoValidator.ValidateAsync(dto, token);
             if (valid.IsValid)
-            {
-                await _accountRepository.CreateAsync(dto.Adapt<Account>(), token);
-            }
+                await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AppHouse.SharedKernel.BaseClasses;
-using System.Text.Json.Serialization;
 
 namespace AppHouse.Accounts.Domain.Dto
 {
@@ -9,7 +8,7 @@ namespace AppHouse.Accounts.Domain.Dto
             string Email,
             string Password,
             string Cellphone,
-            DateTime BirthDate,
+            string BirthDate,
             string Country,
             string State,
             string City,

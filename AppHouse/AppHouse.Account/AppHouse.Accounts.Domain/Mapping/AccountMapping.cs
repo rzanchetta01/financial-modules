@@ -1,15 +1,14 @@
 ﻿using AppHouse.Accounts.Domain.Dto;
 using AppHouse.Accounts.Domain.Entity;
-using Mapster;
+using Riok.Mapperly.Abstractions;
 
 namespace AppHouse.Accounts.Domain.Mapping
 {
-    internal static class AccountMapping
+    [Mapper]
+    public static partial class AccountMapping
     {
-        public static void Register(TypeAdapterConfig config)
-        {
-            config.NewConfig<AccountDto, Account>()
-                .Map(dest => dest.BirthDate, src => DateOnly.FromDateTime(src.BirthDate));
-        }
+        public static partial Account Map(AccountDto dto);
+
+        public static partial AccountDto Map(Account entity);
     }
 }

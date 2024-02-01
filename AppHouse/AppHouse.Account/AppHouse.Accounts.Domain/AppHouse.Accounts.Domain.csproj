@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Entity\" />
     <Folder Include="Exception\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mapster" Version="7.4.1-pre01" />
+    <PackageReference Include="Riok.Mapperly" Version="3.4.0-next.2" />
   </ItemGroup>
 
   <ItemGroup>

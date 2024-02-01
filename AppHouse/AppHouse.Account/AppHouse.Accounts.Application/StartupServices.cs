@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation;
 using AppHouse.Accounts.Domain.Dto;
+using AppHouse.Accounts.Domain.Mapping;
 
 namespace AppHouse.Accounts.Application
 {
@@ -26,7 +27,7 @@ namespace AppHouse.Accounts.Application
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IValidator<AccountDto>, AccountValidator>();
+            services.AddScoped<IValidator<AccountDto>, AccountDtoValidator>();
             return services;
         }
     }
