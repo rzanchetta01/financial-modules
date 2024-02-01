@@ -6,18 +6,22 @@ var dbRedis = builder.AddRedisContainer("dbRedis");
 
 #region MongoDb
 var dbMongo = builder.AddMongoDBContainer("dbMongo")
-    .WithEnvironment("MONGO_INITDB_ROOT_USERNAME", "db:mongo:username")
-    .WithEnvironment("MONGO_INITDB_ROOT_PASSWORD", "db:mongo:password")
-    .WithVolumeMount(builder.Configuration["db:mongo:volume"], builder.Configuration["db:mongo:volume_path"], VolumeMountType.Named, isReadOnly: false);
-
+    .WithEnvironment("MONGO_INITDB_ROOT_USERNAME", builder.Configuration["db:mongo:username"])
+    .WithEnvironment("MONGO_INITDB_ROOT_PASSWORD", builder.Configuration["db:mongo:password"])
+    .WithVolumeMount(builder.Configuration["db:mongo:data:volume_source"], builder.Configuration["db:mongo:data:volume_target"], VolumeMountType.Named)
+    .WithVolumeMount(builder.Configuration["db:mongo:config:volume_source"], builder.Configuration["db:mongo:config:volume_target"], VolumeMountType.Named);
+    
 #endregion
 
 #region Postgres
 
-var dbPostgres = builder.AddPostgresContainer("dbPostgres", int.Parse(builder.Configuration["db:postgres:port"]), builder.Configuration["db:postgres:password"])
+var dbPostgres = builder
+    .AddPostgresContainer("dbPostgres", int.Parse(builder.Configuration["db:postgres:port"]), builder.Configuration["db:postgres:password"])
     .WithEnvironment("POSTGRES_USER", builder.Configuration["db:postgres:username"])
     .WithEnvironment("POSTGRES_PASSWORD", builder.Configuration["db:postgres:password"])
-    .WithVolumeMount(builder.Configuration["db:postgres:volume"], builder.Configuration["db:postgres:volume_path"], VolumeMountType.Named, isReadOnly: false);
+    .WithVolumeMount(builder.Configuration["db:postgres:volume_source"], builder.Configuration["db:postgres:volume_target"], VolumeMountType.Named)
+    .AddDatabase("db:postgres:database");;
+
 
 #endregion
 
@@ -30,7 +34,6 @@ builder.AddProject<Projects.AppHouse_BootsStrap>("apphouse.bootsstrap")
     .WithReference(dbPostgres)
     .WithReference(dbMongo)
     .WithReference(dbRedis);
-
 #endregion
 
 
