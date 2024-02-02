@@ -5,7 +5,7 @@ var dbRedis = builder.AddRedisContainer("dbRedis");
 #endregion
 
 #region MongoDb
-var dbMongo = builder.AddMongoDBContainer("dbMongo")
+var dbMongo = builder.AddMongoDBContainer("dbMongo", int.Parse(builder.Configuration["db:mongo:port"]))
     .WithVolumeMount(builder.Configuration["db:mongo:data:volume_source"], builder.Configuration["db:mongo:data:volume_target"], VolumeMountType.Named)
     .WithVolumeMount(builder.Configuration["db:mongo:config:volume_source"], builder.Configuration["db:mongo:config:volume_target"], VolumeMountType.Named);
 
