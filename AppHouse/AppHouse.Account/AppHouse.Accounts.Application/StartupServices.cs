@@ -1,10 +1,10 @@
 ﻿using AppHouse.Accounts.Core;
 using AppHouse.Accounts.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using FluentValidation;
-using AppHouse.Accounts.Domain.Dto;
-using AppHouse.Accounts.Domain.Mapping;
+using AppHouse.Accounts.Application.Requests.Commands;
+using MediatR;
+using AppHouse.Accounts.Application.Validators;
 
 namespace AppHouse.Accounts.Application
 {
@@ -12,6 +12,7 @@ namespace AppHouse.Accounts.Application
     {
         public static IServiceCollection AddAccountStartup(this IServiceCollection services)
         {
+            services.AddValidators();
             services.AddServices();
             services.AddRepositories();
             
@@ -27,7 +28,13 @@ namespace AppHouse.Accounts.Application
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IValidator<AccountDto>, AccountDtoValidator>();
+            return services;
+        }
+
+        private static IServiceCollection AddValidators(this IServiceCollection services)
+        {
+            services.AddScoped<IValidator<CreateAccountRequest>, CreateAccountValidator>();
+            services.AddScoped<IValidator<UpdateAccountRequest>, UpdateAccountValidator>();
             return services;
         }
     }

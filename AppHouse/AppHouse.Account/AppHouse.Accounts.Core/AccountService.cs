@@ -7,19 +7,15 @@ namespace AppHouse.Accounts.Core
 {
     public class AccountService
         (
-        IAccountRepository accountRepository,
-        IValidator<AccountDto> accountDtoValidator
+        IAccountRepository accountRepository
         )
         : IAccountService
     {
         private readonly IAccountRepository _accountRepository = accountRepository;
-        private readonly IValidator<AccountDto> _accountDtoValidator = accountDtoValidator;
 
         public async Task Create(AccountDto dto, CancellationToken token)
         {
-            var valid = await _accountDtoValidator.ValidateAsync(dto, token);
-            //if (valid.IsValid)
-                await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
+            await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
         }
 
         public async Task<AccountDto?> FindById(Guid Id, CancellationToken token)
@@ -38,9 +34,7 @@ namespace AppHouse.Accounts.Core
 
         public async Task Update(AccountDto dto, CancellationToken token)
         {
-            var valid = await _accountDtoValidator.ValidateAsync(dto, token);
-            if (valid.IsValid)
-                await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
+            await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
         }
     }
 }
