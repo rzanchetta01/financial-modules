@@ -6,8 +6,6 @@ var dbRedis = builder.AddRedisContainer("dbRedis");
 
 #region MongoDb
 var dbMongo = builder.AddMongoDBContainer("dbMongo")
-    .WithEnvironment("MONGO_INITDB_ROOT_USERNAME", builder.Configuration["db:mongo:username"])
-    .WithEnvironment("MONGO_INITDB_ROOT_PASSWORD", builder.Configuration["db:mongo:password"])
     .WithVolumeMount(builder.Configuration["db:mongo:data:volume_source"], builder.Configuration["db:mongo:data:volume_target"], VolumeMountType.Named)
     .WithVolumeMount(builder.Configuration["db:mongo:config:volume_source"], builder.Configuration["db:mongo:config:volume_target"], VolumeMountType.Named);
 
