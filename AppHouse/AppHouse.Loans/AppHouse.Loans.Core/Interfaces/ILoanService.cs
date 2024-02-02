@@ -5,6 +5,6 @@ namespace AppHouse.Loans.Core.Interfaces
 {
     public interface ILoanService : IBaseService<LoanDto, Guid>
     {
-        public Task<IEnumerable<LoanDto>> GetFeasibleLoans(DateOnly dateOnly, CancellationToken token);
+        public Task<IEnumerable<LoanDto>> GetFeasibleLoans(AccountDto accountData, DateOnly maxFeasibleLoanApplyDate, CancellationToken token);
     }
 }

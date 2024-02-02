@@ -10,6 +10,7 @@ namespace AppHouse.Loans.Domain.Entities
         public required DateOnly MaxDateFeasible { get; set; }
         public required DateOnly MinDateFeasible { get; set; }
         public required LoanStyleType LoanStyleType { get; set; }
+        public required int LoanQualityRating { get; set; }
         public string? LoanDescription { get; set; }
     }
 }

@@ -15,8 +15,12 @@ namespace AppHouse.Loans.Application.Handlers.Queries
 
         public async Task<IEnumerable<LoanDto>> Handle(GetAvailableLoanRequest request, CancellationToken cancellationToken)
         {
-            //it needs to call the GetAccountDetailsRequest from the AppHouse.Account where here it cannot have the project reference
-            return await _loanService.GetFeasibleLoans(DateOnly.Parse(request.MaxFeasibleDate), cancellationToken);
+            var accountDetails = await _mediator.Send(new GetAccountDetailsQueryRequest(request.AccountId), cancellationToken);
+
+            if(accountDetails is not null)
+                return await _loanService.GetFeasibleLoans(accountDetails, DateOnly.Parse(request.MaxFeasibleDate), cancellationToken);
+
+            return Enumerable.Empty<LoanDto>();
         }
     }
 }

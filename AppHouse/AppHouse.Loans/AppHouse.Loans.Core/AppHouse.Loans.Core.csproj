@@ -10,4 +10,8 @@
     <ProjectReference Include="..\AppHouse.Loans.Domain\AppHouse.Loans.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validator\" />
+  </ItemGroup>
+
 </Project>
