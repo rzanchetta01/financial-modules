@@ -11,9 +11,9 @@
   <ItemGroup>
     <PackageReference Include="Aspire.MongoDB.Driver" Version="8.0.0-preview.2.23619.3" />
     <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.2.23619.3" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.23.1" />
 	<PackageReference Include="MongoDB.Driver" Version="2.23.1" />
   </ItemGroup>
@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\AppHouse.Account\AppHouse.Accounts.Application\AppHouse.Accounts.Application.csproj" />
     <ProjectReference Include="..\AppHouse.Aspire\AppHouse.Aspire\AppHouse.Aspire.ServiceDefaults\AppHouse.Aspire.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\AppHouse.Loans\AppHouse.Loans.Application\AppHouse.Loans.Application.csproj" />
+    <ProjectReference Include="..\AppHouse.Payments\AppHouse.Payments.Application\AppHouse.Payments.Application.csproj" />
   </ItemGroup>
 
 </Project>
