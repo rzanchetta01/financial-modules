@@ -9,6 +9,7 @@ namespace AppHouse.SharedKernel.DTOs
         string MaxDateFeasible,
         string MinDateFeasible,
         int LoanStyleType,
+        int LoanQualityRating,
         string? LoanDescription,
         Guid? Id,
         DateTime? DateCreated,
