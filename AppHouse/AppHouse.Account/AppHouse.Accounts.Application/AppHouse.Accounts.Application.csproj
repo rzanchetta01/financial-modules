@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Querries\" />
-    <Folder Include="Requests\Querries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AppHouse.Accounts.Core\AppHouse.Accounts.Core.csproj" />
   </ItemGroup>
 
