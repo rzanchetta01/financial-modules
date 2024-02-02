@@ -1,6 +1,26 @@
-﻿namespace AppHouse.BootsStrap.Middlewares
+﻿
+using System.Text.Json;
+using System;
+
+namespace AppHouse.BootsStrap.Middlewares
 {
-    public class GlobalErrorMiddleware
+    public class GlobalErrorMiddleware : IMiddleware
     {
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        {
+			try
+			{
+                await next(context);
+			}
+			catch (Exception ex)
+			{
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+
+                var response = JsonSerializer.Serialize(new { error = ex.Message });
+                context.Response.ContentType = "application/json";
+
+                await context.Response.WriteAsync(response);
+            }
+        }
     }
 }

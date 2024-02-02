@@ -1,9 +1,18 @@
 using AppHouse.Accounts.Core;
 using AppHouse.BootsStrap.Endpoints;
+using AppHouse.BootsStrap.Middlewares;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
+
 
 #region Services DI
+//Mongo Log Start
+builder.AddMongoDBClient("dbMongo");
+
+
+//Account Start
 AppHouse.Accounts.Application.StartupServices.AddAccountStartup(builder.Services);
 builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e => 
 {
@@ -11,14 +20,25 @@ builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e =>
     e.DbContextPooling = true;
 });
 
+//Cache Start
 builder.Services.AddMemoryCache();//TODO change later to redis
 
-builder.AddServiceDefaults();
+
+//MediatR
+builder.Services.AddTransient (typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
 builder.Services.AddMediatR(c => 
 {
     c.RegisterServicesFromAssemblyContaining<AppHouse.Accounts.Application.Init>();
-});
+}).AddScoped(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
+
+
 #endregion
+
+#region Middlewares services
+builder.Services.AddTransient<CorsMiddleware>();
+builder.Services.AddTransient<GlobalErrorMiddleware>();
+#endregion
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -37,8 +57,8 @@ else
     app.UseHsts();
 }
 #region Middlewares
-
-
+app.UseMiddleware<CorsMiddleware>();
+app.UseMiddleware<GlobalErrorMiddleware>();
 #endregion
 
 #region Controllers
