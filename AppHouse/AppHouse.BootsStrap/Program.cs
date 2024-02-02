@@ -75,6 +75,7 @@ app.UseMiddleware<GlobalErrorMiddleware>();
 
 #region Controllers
 AccountEndpoints.Setup(app);
+LoanEndpoints.Setup(app);
 #endregion
 
 app.Run();
