@@ -17,6 +17,14 @@ namespace AppHouse.Accounts.Core
             await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
         }
 
+        public Task<int> DefineAccountRating(AccountDto account, CancellationToken token)
+        {
+            if (account.Name.StartsWith("y", StringComparison.OrdinalIgnoreCase))
+                return Task.FromResult(5);
+
+            return Task.FromResult(0);
+        }
+
         public async Task<AccountDto?> FindById(Guid Id, CancellationToken token)
         {
             var entity = await _accountRepository.FindByIdAsync(Id, token);
