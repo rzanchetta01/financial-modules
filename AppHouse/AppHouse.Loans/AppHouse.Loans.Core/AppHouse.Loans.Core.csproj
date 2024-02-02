@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppHouse.Loans.Domain\AppHouse.Loans.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
