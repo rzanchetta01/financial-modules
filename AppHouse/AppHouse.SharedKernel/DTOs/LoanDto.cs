@@ -1,15 +1,14 @@
-﻿using AppHouse.Loans.Domain.Entities;
-using AppHouse.SharedKernel.BaseClasses;
+﻿using AppHouse.SharedKernel.BaseClasses;
 
-namespace AppHouse.Loans.Domain.Dtos
+namespace AppHouse.SharedKernel.DTOs
 {
     public record LoanDto(
         Guid CreatorAccountId,
-        decimal MaxAmmount,
-        decimal MinAmmount,
+        decimal MaxAmount,
+        decimal MinAmount,
         string MaxDateFeasible,
         string MinDateFeasible,
-        LoanStyleType LoanStyleType,
+        int LoanStyleType,
         string? LoanDescription,
         Guid? Id,
         DateTime? DateCreated,

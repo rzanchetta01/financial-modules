@@ -1,7 +1,7 @@
-﻿using AppHouse.Accounts.Application.Requests.Commands;
-using AppHouse.Accounts.Core.Interfaces;
-using AppHouse.Accounts.Domain.Dto;
+﻿using AppHouse.Accounts.Core.Interfaces;
 using AppHouse.SharedKernel.BasicEvents;
+using AppHouse.SharedKernel.DTOs;
+using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Commands
@@ -19,8 +19,9 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
 
         public async Task<bool> Handle(CreateAccountRequest request, CancellationToken cancellationToken)
         {
+            
+            
             await _accountService.Create(request.AccountDto, cancellationToken);
-
             await _mediator.Publish(new TEntityCreated<AccountDto>(request.AccountDto), cancellationToken);
             return true;
         }               

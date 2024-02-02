@@ -1,8 +1,7 @@
-﻿
-using AppHouse.Accounts.Domain.Dto;
+﻿using AppHouse.SharedKernel.DTOs;
 using MediatR;
 
-namespace AppHouse.Accounts.Application.Requests.Commands
+namespace AppHouse.SharedKernel.SharedRequests.SharedCommands
 {
     public record CreateAccountRequest(AccountDto AccountDto) : IRequest<bool>;
 }

@@ -1,6 +1,7 @@
 using AppHouse.Accounts.Core;
 using AppHouse.BootsStrap.Endpoints;
 using AppHouse.BootsStrap.Middlewares;
+using AppHouse.Loans.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -20,16 +21,27 @@ builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e =>
     e.DbContextPooling = true;
 });
 
+//Loan Start
+AppHouse.Loans.Application.StartupServices.AddLoansStartup(builder.Services);
+builder.AddNpgsqlDbContext<LoanContext>("dbPostgres", e =>
+{
+    e.ConnectionString = builder.Configuration.GetConnectionString("account");
+    e.DbContextPooling = true;
+});
+
 //Cache Start
 builder.Services.AddMemoryCache();//TODO change later to redis
 
 
 //MediatR
-builder.Services.AddTransient (typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
-builder.Services.AddMediatR(c => 
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
+builder.Services.AddMediatR(c =>
 {
     c.RegisterServicesFromAssemblyContaining<AppHouse.Accounts.Application.Init>();
-}).AddScoped(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
+    c.RegisterServicesFromAssemblyContaining<AppHouse.Loans.Application.Init>();
+
+})
+    .AddScoped(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
 
 
 #endregion
@@ -56,7 +68,7 @@ else
 {
     app.UseHsts();
 }
-#region Middlewares
+#region Middlewares activation
 app.UseMiddleware<CorsMiddleware>();
 app.UseMiddleware<GlobalErrorMiddleware>();
 #endregion

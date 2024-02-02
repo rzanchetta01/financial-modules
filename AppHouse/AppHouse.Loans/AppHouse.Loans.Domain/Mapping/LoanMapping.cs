@@ -1,5 +1,5 @@
-﻿using AppHouse.Loans.Domain.Dtos;
-using AppHouse.Loans.Domain.Entities;
+﻿using AppHouse.Loans.Domain.Entities;
+using AppHouse.SharedKernel.DTOs;
 using Riok.Mapperly.Abstractions;
 
 namespace AppHouse.Loans.Domain.Mapping

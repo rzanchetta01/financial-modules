@@ -1,6 +1,6 @@
-﻿using AppHouse.Accounts.Application.Requests.Queries;
-using AppHouse.Accounts.Core.Interfaces;
-using AppHouse.Accounts.Domain.Dto;
+﻿using AppHouse.Accounts.Core.Interfaces;
+using AppHouse.SharedKernel.DTOs;
+using AppHouse.SharedKernel.SharedRequests.SharedQueries;
 using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Queries

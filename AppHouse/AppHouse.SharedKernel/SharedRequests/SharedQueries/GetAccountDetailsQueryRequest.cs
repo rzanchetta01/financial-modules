@@ -1,7 +1,7 @@
-﻿using AppHouse.Accounts.Domain.Dto;
+﻿using AppHouse.SharedKernel.DTOs;
 using MediatR;
 
-namespace AppHouse.Accounts.Application.Requests.Queries
+namespace AppHouse.SharedKernel.SharedRequests.SharedQueries
 {
     public record GetAccountDetailsQueryRequest(Guid AccountId) : IRequest<AccountDto?>;
 }

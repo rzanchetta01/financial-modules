@@ -1,5 +1,5 @@
-﻿using AppHouse.Accounts.Domain.Dto;
-using AppHouse.Accounts.Domain.Entity;
+﻿using AppHouse.Accounts.Domain.Entity;
+using AppHouse.SharedKernel.DTOs;
 using Riok.Mapperly.Abstractions;
 
 namespace AppHouse.Accounts.Domain.Mapping

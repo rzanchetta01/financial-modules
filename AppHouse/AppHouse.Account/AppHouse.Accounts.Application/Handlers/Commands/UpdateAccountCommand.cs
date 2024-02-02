@@ -1,7 +1,7 @@
-﻿using AppHouse.Accounts.Application.Requests.Commands;
-using AppHouse.Accounts.Core.Interfaces;
-using AppHouse.Accounts.Domain.Dto;
+﻿using AppHouse.Accounts.Core.Interfaces;
 using AppHouse.SharedKernel.BasicEvents;
+using AppHouse.SharedKernel.DTOs;
+using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Commands

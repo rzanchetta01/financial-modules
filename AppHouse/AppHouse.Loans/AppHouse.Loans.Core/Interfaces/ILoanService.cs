@@ -1,8 +1,10 @@
-﻿using AppHouse.SharedKernel.Interfaces;
+﻿using AppHouse.SharedKernel.DTOs;
+using AppHouse.SharedKernel.Interfaces;
 
 namespace AppHouse.Loans.Core.Interfaces
 {
-    public interface ILoanService : IBaseService<Domain.Dtos.LoanDto, Guid>
+    public interface ILoanService : IBaseService<LoanDto, Guid>
     {
+        public Task<IEnumerable<LoanDto>> GetFeasibleLoans(DateOnly dateOnly, CancellationToken token);
     }
 }

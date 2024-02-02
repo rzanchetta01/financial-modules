@@ -1,7 +1,7 @@
 ﻿using AppHouse.SharedKernel.BaseClasses;
 
-namespace AppHouse.Accounts.Domain.Dto
-{
+namespace AppHouse.SharedKernel.DTOs
+{ 
     public record AccountDto 
         (
             string Name,

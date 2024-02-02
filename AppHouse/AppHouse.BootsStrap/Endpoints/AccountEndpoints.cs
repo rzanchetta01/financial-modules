@@ -1,5 +1,5 @@
-﻿using AppHouse.Accounts.Application.Requests.Commands;
-using AppHouse.Accounts.Domain.Dto;
+﻿using AppHouse.SharedKernel.DTOs;
+using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

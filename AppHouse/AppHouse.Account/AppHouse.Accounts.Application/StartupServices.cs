@@ -2,9 +2,9 @@
 using AppHouse.Accounts.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
-using AppHouse.Accounts.Application.Requests.Commands;
 using MediatR;
 using AppHouse.Accounts.Application.Validators;
+using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 
 namespace AppHouse.Accounts.Application
 {
