@@ -6,7 +6,7 @@ namespace AppHouse.Accounts.Domain.Entity
 
     public class Account : BaseEntity
     {
-        public Account() // Parameterless constructor
+        public Account()
         {
         }
 

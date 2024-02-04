@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entity\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\AppHouse.SharedKernel\AppHouse.SharedKernel.csproj" />
   </ItemGroup>
 
