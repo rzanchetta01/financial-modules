@@ -43,6 +43,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Payments.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.BootsStrap", "AppHouse.BootsStrap\AppHouse.BootsStrap.csproj", "{CB0B185E-BDCE-4AD9-B934-39EC51B6A03F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppHouse.DbScripts", "AppHouse.DbScripts", "{02AA8228-CC67-4FC9-BA9B-F4DEA03332C3}"
+	ProjectSection(SolutionItems) = preProject
+		AppHouse.DbScripts\AccountActivityHistoryTable.sql = AppHouse.DbScripts\AccountActivityHistoryTable.sql
+		AppHouse.DbScripts\AccountTable.sql = AppHouse.DbScripts\AccountTable.sql
+		AppHouse.DbScripts\LoanStyleTypeTable.sql = AppHouse.DbScripts\LoanStyleTypeTable.sql
+		AppHouse.DbScripts\LoanTable.sql = AppHouse.DbScripts\LoanTable.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
