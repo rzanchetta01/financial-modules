@@ -34,14 +34,12 @@ builder.Services.AddMemoryCache();//TODO change later to redis
 
 
 //MediatR
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
 builder.Services.AddMediatR(c =>
 {
     c.RegisterServicesFromAssemblyContaining<AppHouse.Accounts.Application.Init>();
     c.RegisterServicesFromAssemblyContaining<AppHouse.Loans.Application.Init>();
 
-})
-    .AddScoped(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
+});
 
 
 #endregion
@@ -49,6 +47,7 @@ builder.Services.AddMediatR(c =>
 #region Middlewares services
 builder.Services.AddTransient<CorsMiddleware>();
 builder.Services.AddTransient<GlobalErrorMiddleware>();
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
 #endregion
 
 builder.Services.AddEndpointsApiExplorer();

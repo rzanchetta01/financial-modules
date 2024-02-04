@@ -21,7 +21,7 @@ namespace AppHouse.BootsStrap.Middlewares
         {
             var log = new EventLogger(
                 Id: Guid.NewGuid().ToString(),
-                EventName: typeof(TRequest).Name ?? $"unkown event from {typeof(TRequest).Namespace}",
+                EventName: typeof(TRequest).Name ?? $"unknown event from {typeof(TRequest).Namespace}",
                 EventData: request.ToBsonDocument(),
                 TimeStamp: DateTime.Now,
                 Validators: null,
@@ -44,8 +44,7 @@ namespace AppHouse.BootsStrap.Middlewares
                 if (failures.Count > 0)
                 {
                     log.PassValidations = false;
-                    await _collection.InsertOneAsync(log, null, cancellationToken);
-
+                    //await _collection.InsertOneAsync(log, null, cancellationToken);
                     //throw new ValidationException(failures);
 
                 }
