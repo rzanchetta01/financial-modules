@@ -44,9 +44,10 @@ namespace AppHouse.BootsStrap.Middlewares
                 if (failures.Count > 0)
                 {
                     log.PassValidations = false;
-                    //await _collection.InsertOneAsync(log, null, cancellationToken);
-                    //throw new ValidationException(failures);
-
+#if !DEBUG
+                    await _collection.InsertOneAsync(log, null, cancellationToken);
+                    throw new ValidationException(failures);
+#endif
                 }
             }
 
