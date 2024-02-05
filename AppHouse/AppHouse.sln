@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Payments.Domain", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Payments.Tests", "AppHouse.Payments\AppHouse.Payments.Tests\AppHouse.Payments.Tests.csproj", "{053C3274-DE0A-4A0C-9D81-25D13944685D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.BootsStrap", "AppHouse.BootsStrap\AppHouse.BootsStrap.csproj", "{CB0B185E-BDCE-4AD9-B934-39EC51B6A03F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Gateway", "AppHouse.BootsStrap\AppHouse.Gateway.csproj", "{CB0B185E-BDCE-4AD9-B934-39EC51B6A03F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppHouse.DbScripts", "AppHouse.DbScripts", "{02AA8228-CC67-4FC9-BA9B-F4DEA03332C3}"
 	ProjectSection(SolutionItems) = preProject

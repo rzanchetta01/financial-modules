@@ -3,7 +3,7 @@ using MediatR;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace AppHouse.BootsStrap.Middlewares
+namespace AppHouse.Gateway.Middlewares
 {
     internal record struct EventLogger(string Id, string EventName, BsonDocument[]? Validators, bool PassValidations, BsonDocument EventData, DateTime TimeStamp);
 

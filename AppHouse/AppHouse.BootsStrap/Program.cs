@@ -1,6 +1,6 @@
 using AppHouse.Accounts.Core;
-using AppHouse.BootsStrap.Endpoints;
-using AppHouse.BootsStrap.Middlewares;
+using AppHouse.Gateway.Endpoints;
+using AppHouse.Gateway.Middlewares;
 using AppHouse.Loans.Core;
 using AppHouse.SharedKernel.Core.BaseClasses;
 using MediatR;

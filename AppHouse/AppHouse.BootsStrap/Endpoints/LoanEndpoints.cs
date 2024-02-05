@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AppHouse.BootsStrap.Endpoints
+namespace AppHouse.Gateway.Endpoints
 {
     internal static class LoanEndpoints
     {

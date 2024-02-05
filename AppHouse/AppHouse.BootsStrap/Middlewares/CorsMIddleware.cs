@@ -1,5 +1,5 @@
 ﻿
-namespace AppHouse.BootsStrap.Middlewares
+namespace AppHouse.Gateway.Middlewares
 {
     public class CorsMiddleware : IMiddleware
     {

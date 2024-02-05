@@ -27,7 +27,7 @@ var dbPostgres = builder
 #endregion
 
 #region Projects
-builder.AddProject<Projects.AppHouse_BootsStrap>("apphouse.bootsstrap")
+builder.AddProject<Projects.AppHouse_Gateway>("apphouse.gateway")
     .WithReference(dbPostgres)
     .WithReference(dbMongo)
     .WithReference(dbRedis);

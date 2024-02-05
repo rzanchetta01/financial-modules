@@ -1,8 +1,7 @@
-﻿
-using System.Text.Json;
+﻿using System.Text.Json;
 using System;
 
-namespace AppHouse.BootsStrap.Middlewares
+namespace AppHouse.Gateway.Middlewares
 {
     public class GlobalErrorMiddleware : IMiddleware
     {
