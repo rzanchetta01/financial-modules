@@ -20,9 +20,15 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
+        
     - name: Restore dependencies
       run: cd AppHouse && dotnet restore
+      
+    - name: Install required workload
+      run: dotnet workload install AppHouse.Aspire.AppHost
+      
     - name: Build
       run:  cd AppHouse && dotnet build --no-restore
+      
     - name: Test
       run:  cd AppHouse && dotnet test --no-build --verbosity normal
