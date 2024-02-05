@@ -20,7 +20,10 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
+  
         
+    - name: Aspire worker install
+      run: dotnet workload restore [/home/runner/work/financial-modules/financial-modules/AppHouse/AppHouse.Aspire/AppHouse.Aspire/AppHouse.Aspire.AppHost/AppHouse.Aspire.AppHost.csproj]
 
     - name: Restore dependencies
       run: cd AppHouse && dotnet restore
