@@ -1,4 +1,4 @@
-﻿using AppHouse.Accounts.Domain.Entity;
+﻿using AppHouse.SharedKernel.Entities;
 using AppHouse.SharedKernel.DTOs;
 using Riok.Mapperly.Abstractions;
 

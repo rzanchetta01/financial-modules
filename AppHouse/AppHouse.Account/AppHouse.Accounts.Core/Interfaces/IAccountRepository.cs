@@ -2,7 +2,7 @@
 
 namespace AppHouse.Accounts.Core.Interfaces
 {
-    public interface IAccountRepository : IBaseRepository<Domain.Entity.Account, Guid>
+    public interface IAccountRepository : IBaseRepository<SharedKernel.Entities.Account, Guid>
     {
     }
 }

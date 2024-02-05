@@ -2,6 +2,7 @@ using AppHouse.Accounts.Core;
 using AppHouse.BootsStrap.Endpoints;
 using AppHouse.BootsStrap.Middlewares;
 using AppHouse.Loans.Core;
+using AppHouse.SharedKernel.Core.BaseClasses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -12,12 +13,19 @@ builder.AddServiceDefaults();
 //Mongo Log Start
 builder.AddMongoDBClient("dbMongo");
 
+//Base Context Start
+AppHouse.Loans.Application.StartupServices.AddLoansStartup(builder.Services);
+builder.AddNpgsqlDbContext<BaseContext>("dbPostgres", e =>
+{
+    e.ConnectionString = builder.Configuration.GetConnectionString("psql");
+    e.DbContextPooling = true;
+});
 
 //Account Start
 AppHouse.Accounts.Application.StartupServices.AddAccountStartup(builder.Services);
 builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e => 
 {
-    e.ConnectionString = builder.Configuration.GetConnectionString("account");
+    e.ConnectionString = builder.Configuration.GetConnectionString("psql");
     e.DbContextPooling = true;
 });
 
@@ -25,12 +33,12 @@ builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e =>
 AppHouse.Loans.Application.StartupServices.AddLoansStartup(builder.Services);
 builder.AddNpgsqlDbContext<LoanContext>("dbPostgres", e =>
 {
-    e.ConnectionString = builder.Configuration.GetConnectionString("account");
+    e.ConnectionString = builder.Configuration.GetConnectionString("psql");
     e.DbContextPooling = true;
 });
 
 //Cache Start
-builder.Services.AddMemoryCache();//TODO change later to redis
+builder.Services.AddMemoryCache();//TODO change later to Redis
 
 
 //MediatR

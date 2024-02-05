@@ -1,5 +1,4 @@
-﻿using AppHouse.SharedKernel;
-using AppHouse.Accounts.Domain.Entity;
+﻿using AppHouse.SharedKernel.Entities;
 using Microsoft.EntityFrameworkCore;
 using AppHouse.Accounts.Core.Interfaces;
 

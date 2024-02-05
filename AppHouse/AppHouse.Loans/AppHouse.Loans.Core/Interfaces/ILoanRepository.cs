@@ -1,4 +1,4 @@
-﻿using AppHouse.Loans.Domain.Entities;
+﻿using AppHouse.SharedKernel.Entities;
 
 namespace AppHouse.Loans.Core.Interfaces
 {

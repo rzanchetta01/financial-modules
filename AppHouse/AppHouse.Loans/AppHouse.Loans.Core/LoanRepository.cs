@@ -1,5 +1,5 @@
 ﻿using AppHouse.Loans.Core.Interfaces;
-using AppHouse.Loans.Domain.Entities;
+using AppHouse.SharedKernel.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppHouse.Loans.Core
