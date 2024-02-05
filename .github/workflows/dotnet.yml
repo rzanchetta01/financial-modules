@@ -23,10 +23,10 @@ jobs:
   
         
     - name: Aspire worker install
-      run: cd A dotnet workload restore [AppHouse.Aspire.AppHost.csproj]
+      run: cd AppHouse/AppHouse.Aspire/AppHouse.Aspire/AppHouse.Aspire.AppHost && dotnet workload restore [AppHouse.Aspire.AppHost.csproj]
 
     - name: Restore dependencies
-      run: cd AppHouse/AppHouse.Aspire/AppHouse.Aspire/AppHouse.Aspire.AppHost && dotnet restore
+      run: cd AppHouse && dotnet restore
       
     - name: Build
       run:  cd AppHouse && dotnet build --no-restore
