@@ -1,7 +1,6 @@
 ﻿using AppHouse.Loans.Core.Interfaces;
 using AppHouse.Loans.Domain.Mapping;
 using AppHouse.SharedKernel.DTOs;
-using MediatR;
 
 namespace AppHouse.Loans.Core
 {

@@ -1,4 +1,6 @@
-﻿using AppHouse.SharedKernel.SharedRequests.SharedQueries;
+﻿using AppHouse.SharedKernel.DTOs;
+using AppHouse.SharedKernel.SharedRequests.SharedCommands;
+using AppHouse.SharedKernel.SharedRequests.SharedQueries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +18,14 @@ namespace AppHouse.Gateway.Endpoints
                 var result = await mediator.Send(req, token);
 
                 return Results.Ok(result);
+            });
+
+            loansEndpoints.MapPost("", async ([FromBody] LoanDto loan, [FromServices] IMediator mediator, CancellationToken token) =>
+            {
+                var req = new CreateLoanRequest(loan);
+                var result = await mediator.Send(req, token);
+
+                return result ? Results.Created() : Results.BadRequest();
             });
         }
     }
