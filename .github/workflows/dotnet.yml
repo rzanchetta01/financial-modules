@@ -21,13 +21,10 @@ jobs:
       with:
         dotnet-version: 8.0.x
         
-    - name: Install required workload
-      run: dotnet workload install [/home/runner/work/financial-modules/financial-modules/AppHouse/AppHouse.Aspire/AppHouse.Aspire/AppHouse.Aspire.AppHost/AppHouse.Aspire.AppHost.csproj]
-      
+
     - name: Restore dependencies
       run: cd AppHouse && dotnet restore
       
-
     - name: Build
       run:  cd AppHouse && dotnet build --no-restore
       
