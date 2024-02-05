@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppHouse.Accounts.Application\AppHouse.Accounts.Application.csproj" />
+  </ItemGroup>
+
 </Project>

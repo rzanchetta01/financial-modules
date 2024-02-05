@@ -33,6 +33,5 @@ builder.AddProject<Projects.AppHouse_Gateway>("apphouse.gateway")
     .WithReference(dbRedis);
 #endregion
 
-
 #pragma warning restore CS8604 // Possible null reference argument end.
 builder.Build().Run();
