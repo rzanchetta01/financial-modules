@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AppHouse.BootsStrap\AppHouse.BootsStrap.csproj" />
+    <ProjectReference Include="..\..\AppHouse.BootsStrap\AppHouse.BootsStrap.csproj" />
   </ItemGroup>
 
 </Project>
