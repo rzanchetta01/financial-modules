@@ -19,10 +19,16 @@ namespace AppHouse.Accounts.Core
 
         public Task<int> DefineStartAccountRating(AccountDto account, CancellationToken token)
         {
-            if (account.Name.StartsWith("y", StringComparison.OrdinalIgnoreCase))
-                return Task.FromResult(5);
+            int CreditScore = 0
 
-            return Task.FromResult(0);
+            if account.Balance >= 6000
+                CreditScore += 1;
+            if account.Age >= 27
+                CreditScore += 1;
+            if account.AddressComplement is not null
+                CreditScore += 1;
+
+            return Task.FromResult(CreditScore);
         }
 
         public async Task<AccountDto?> FindById(Guid Id, CancellationToken token)
