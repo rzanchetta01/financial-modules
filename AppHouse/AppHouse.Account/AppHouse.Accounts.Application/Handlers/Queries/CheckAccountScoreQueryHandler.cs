@@ -12,7 +12,7 @@ namespace AppHouse.Accounts.Application.Handlers.Queries
         public async Task<int> Handle(CheckAccountScoreQueryRequest request, CancellationToken cancellationToken)
         {
             var account = await _accountService.FindById(request.AccountId, cancellationToken) ?? throw new ArgumentException("Account not found");
-            return await _accountService.DefineAccountRating(account, cancellationToken);
+            return (int)Math.Floor(account.CreditScore);
         }
     }
 }

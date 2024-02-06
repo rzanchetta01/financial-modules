@@ -17,7 +17,7 @@ namespace AppHouse.Accounts.Core
             await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
         }
 
-        public Task<int> DefineAccountRating(AccountDto account, CancellationToken token)
+        public Task<int> DefineStartAccountRating(AccountDto account, CancellationToken token)
         {
             if (account.Name.StartsWith("y", StringComparison.OrdinalIgnoreCase))
                 return Task.FromResult(5);
