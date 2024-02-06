@@ -15,3 +15,4 @@ global using AppHouse.SharedKernel.Entities;
 global using MediatR;
 global using Moq;
 global using FluentValidation;
+global using AppHouse.Accounts.Tests;
