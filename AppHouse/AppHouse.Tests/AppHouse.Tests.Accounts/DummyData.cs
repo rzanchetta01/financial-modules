@@ -1,8 +1,6 @@
-﻿using AppHouse.SharedKernel.DTOs;
-
-namespace AppHouse.Accounts.Tests
+﻿namespace AppHouse.Accounts.Tests
 {
-    public static class DummyData
+    public static partial class DummyData
     {
         public static AccountDto DummyNewAccountDto { get; } = new AccountDto
         (

@@ -1,4 +1,4 @@
-﻿namespace AppHouse.Accounts.Tests
+﻿namespace AppHouse.Tests.Accounts
 {
     public class CreateAccountTests
     {
