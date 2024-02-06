@@ -26,7 +26,7 @@ namespace AppHouse.Accounts.Core
             if account.Age >= 27
                 CreditScore += 1;
             if account.AddressComplement is not null
-                CreditScore += 1;
+                CreditScore += 2;
 
             return Task.FromResult(CreditScore);
         }
