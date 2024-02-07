@@ -33,18 +33,20 @@ namespace AppHouse.Loans.Core
         public async Task PurgeAsync(Guid id, CancellationToken token)
         {
             var entity = await FindByIdAsync(id, token);
-            if (entity is not null)
-            {
-                entity.IsActive = false;
-                await _loanContext.SaveChangesAsync(token);
-            }
+
+            if(entity is null)
+                return;
+
+            _loanContext.Remove(entity);
+            await _loanContext.SaveChangesAsync(token);
+            
         }
 
         public async Task PurgeRangeAsync(IEnumerable<Guid> ids, CancellationToken token)
         {
             await _loanContext.Loans
                 .Where(e => ids.Contains(e.Id))
-                .ForEachAsync(e => e.IsActive = false, token);
+                .ForEachAsync(e => _loanContext.Remove(e), token);
 
             await _loanContext.SaveChangesAsync(token);
         }

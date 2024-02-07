@@ -1,10 +1,27 @@
-﻿using AppHouse.SharedKernel.Entities;
+﻿using AppHouse.SharedKernel.BaseClasses;
+using AppHouse.SharedKernel.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace AppHouse.SharedKernel.Core.BaseClasses;
 
 public abstract class BaseContext(DbContextOptions options) : DbContext (options)
 {
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    {
+        ChangeTracker
+            .Entries()
+            .Where(entry => entry.State == EntityState.Deleted && entry.Entity is BaseEntity)
+            .ToList()
+            .ForEach(entry => 
+            {
+                entry.State = EntityState.Modified;
+                entry.CurrentValues["IsActive"] = false;
+            });
+
+        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
@@ -114,6 +131,28 @@ public abstract class BaseContext(DbContextOptions options) : DbContext (options
 
         });
 
+        HandleOnlyActiveEntities(ref modelBuilder);
+    }
+
+    private static void HandleOnlyActiveEntities(ref ModelBuilder modelBuilder)
+    {
+        var entityTypes = modelBuilder.Model.GetEntityTypes()
+            .Where(e => typeof(BaseEntity).IsAssignableFrom(e.ClrType));
+
+        foreach (var entityType in entityTypes)
+        {
+            modelBuilder.Entity(entityType.ClrType)
+                .HasQueryFilter(RetrieveOnlyActives(entityType.ClrType));
+        }
+    }
+
+    private static LambdaExpression RetrieveOnlyActives(Type type)
+    {
+        var parameter = Expression.Parameter(type, "entity");
+        var property = Expression.Property(parameter, "IsActive");
+        var notDeleted = Expression.Constant(true);
+        var condition = Expression.Equal(property, notDeleted);
+        return Expression.Lambda(condition, parameter);
     }
 
 }
