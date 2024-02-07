@@ -23,7 +23,7 @@ namespace AppHouse.Gateway.Middlewares
                 Id: Guid.NewGuid().ToString(),
                 EventName: typeof(TRequest).Name ?? $"unknown event from {typeof(TRequest).Namespace}",
                 EventData: request.ToBsonDocument(),
-                TimeStamp: DateTime.Now,
+                TimeStamp: DateTime.UtcNow,
                 Validators: null,
                 PassValidations: true
                 
