@@ -2,38 +2,55 @@
 using AppHouse.Accounts.Domain.Mapping;
 using AppHouse.SharedKernel.DTOs;
 
+
 namespace AppHouse.Accounts.Core
 {
+
     public class AccountService
         (
         IAccountRepository accountRepository
         )
         : IAccountService
     {
+
         private readonly IAccountRepository _accountRepository = accountRepository;
+
 
         public async Task Create(AccountDto dto, CancellationToken token)
         {
 
             int startAccountRating = DefineStartAccountRating(dto, token);
-            dto.CreditScore = startAccountRating;
 
-            await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
+            var newDto = dto with { CreditScore = startAccountRating };
+            await _accountRepository.CreateAsync(AccountMapping.Map(newDto), token);
         }
 
         public int DefineStartAccountRating(AccountDto account, CancellationToken token)
         {
             int CreditScore = 0;
-            if account.Balance >= 6000
-                CreditScore += 1;
-            if account.Age >= 27
-                CreditScore += 1;
-            if account.AddressComplement is not null
+            //if (account.Balance >= 6000)
+                //CreditScore += 1;
+
+            DateTime birthDate;
+            if (DateTime.TryParse(account.BirthDate, out birthDate))
+            {
+                DateTime currentDate = DateTime.Today;
+                int age = currentDate.Year - birthDate.Year;
+
+                if (birthDate.Date > currentDate.AddYears(-age))
+                {
+                    age--;
+                }
+                if (age >= 27)
+                    CreditScore += 1;
+            }
+
+            if (account.AddressComplement is not null)
                 CreditScore += 2;
-            if account.Name.Contains(" ") // has a surname or is included in the rule of compound names
+            if (account.Name.Contains(" ")) // has a surname or is included in the rule of compound names
                 CreditScore += 1;
 
-            return FromResult(CreditScore);
+            return CreditScore;
         }
 
         public async Task<AccountDto?> FindById(Guid Id, CancellationToken token)
@@ -54,4 +71,5 @@ namespace AppHouse.Accounts.Core
             await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
         }
     }
+
 }
