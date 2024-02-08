@@ -41,7 +41,7 @@ namespace AppHouse.Accounts.Core
 
         public async Task Update(AccountDto dto, CancellationToken token)
         {
-            await _accountRepository.CreateAsync(AccountMapping.Map(dto), token);
+            await _accountRepository.UpdateAsync(AccountMapping.Map(dto), token);
         }
     }
 }
