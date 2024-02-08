@@ -10,5 +10,11 @@ namespace AppHouse.Accounts.Domain.Mapping
         public static partial Account Map(AccountDto dto);
 
         public static partial AccountDto Map(Account entity);
+
+        public static partial IEnumerable<Account> Map(IEnumerable<AccountDto> dto);
+
+        public static partial IEnumerable<AccountDto> Map(IEnumerable<Account>entity);
+
+
     }
 }
