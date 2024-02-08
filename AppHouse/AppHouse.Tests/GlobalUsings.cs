@@ -15,4 +15,7 @@ global using AppHouse.SharedKernel.Entities;
 global using MediatR;
 global using Moq;
 global using FluentValidation;
-global using AppHouse.Accounts.Tests;
+global using AppHouse.Accounts.Application.Validators;
+global using AppHouse.Accounts.Application.Handlers.Queries;
+global using AppHouse.SharedKernel.SharedRequests.SharedQueries;
+global using AppHouse.Loans.Core.Validator;

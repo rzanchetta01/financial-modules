@@ -1,4 +1,4 @@
-﻿namespace AppHouse.Accounts.Tests
+﻿namespace AppHouse.Tests
 {
     public static partial class DummyData
     {
