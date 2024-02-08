@@ -61,5 +61,66 @@
         DateTime.Parse("2023-12-31"),
         false
         );
+
+        public static IEnumerable<AccountDto> DummyListOfExistingAccountDto { get; } = new List<AccountDto>()
+        {
+            new
+            (
+                "testName",
+                "test@email.com",
+                "testPassword",
+                "1197264321",
+                "1987-12-12",
+                "testCountry",
+                "testState",
+                "testCity",
+                "02582123",
+                "testAddressWithFakeCountryStateAndCity",
+                "testAddressNumber1",
+                1000M,
+                5.0D,
+                Guid.NewGuid(),
+                DateTime.Parse("2023-12-31"),
+                true
+            ),
+            new
+            (
+                "testName",
+                "test@email.com",
+                "testPassword",
+                "1197264321",
+                "1987-12-12",
+                "testCountry",
+                "testState",
+                "testCity",
+                "02582123",
+                "testAddressWithFakeCountryStateAndCity",
+                "testAddressNumber1",
+                1000M,
+                5.0D,
+                Guid.NewGuid(),
+                DateTime.Parse("2023-12-31"),
+                true
+            ),
+            new
+            (
+                "testName",
+                "test@email.com",
+                "testPassword",
+                "1197264321",
+                "1987-12-12",
+                "testCountry",
+                "testState",
+                "testCity",
+                "02582123",
+                "testAddressWithFakeCountryStateAndCity",
+                "testAddressNumber1",
+                1000M,
+                5.0D,
+                Guid.NewGuid(),
+                DateTime.Parse("2023-12-31"),
+                true
+            )
+        };
     }
 }
