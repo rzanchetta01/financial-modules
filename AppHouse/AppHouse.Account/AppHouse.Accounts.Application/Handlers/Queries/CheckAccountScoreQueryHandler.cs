@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Queries
 {
-    internal class CheckAccountScoreQueryHandler(IAccountService accountService) : IRequestHandler<CheckAccountScoreQueryRequest, int>
+    public class CheckAccountScoreQueryHandler(IAccountService accountService) : IRequestHandler<CheckAccountScoreQueryRequest, int>
     {
         private readonly IAccountService _accountService = accountService;
 

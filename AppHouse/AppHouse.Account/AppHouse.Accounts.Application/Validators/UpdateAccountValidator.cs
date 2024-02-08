@@ -7,6 +7,9 @@ namespace AppHouse.Accounts.Application.Validators
     {
         public UpdateAccountValidator()
         {
+            RuleFor(req => req.AccountDto.Id).NotEmpty();
+            RuleFor(req => req.AccountDto.DateCreated).NotEmpty();
+            RuleFor(req => req.AccountDto.IsActive).NotEmpty().Equal(true);
             RuleFor(req => req.AccountDto.Name).NotEmpty().MaximumLength(100);
             RuleFor(req => req.AccountDto.Email).NotEmpty().EmailAddress();
             RuleFor(req => req.AccountDto.Password).NotEmpty().MinimumLength(8);

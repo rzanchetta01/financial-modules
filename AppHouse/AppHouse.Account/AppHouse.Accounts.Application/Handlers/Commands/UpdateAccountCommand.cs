@@ -6,7 +6,7 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Commands
 {
-    internal class UpdateAccountCommand
+    public class UpdateAccountCommand
         (
             IAccountService accountService,
             IMediator mediator

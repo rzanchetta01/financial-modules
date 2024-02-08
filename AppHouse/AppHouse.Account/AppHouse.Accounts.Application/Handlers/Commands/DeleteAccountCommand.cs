@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Commands
 {
-    internal class DeleteAccountCommand
+    public class DeleteAccountCommand
         (
             IAccountService accountService,
             IMediator mediator
