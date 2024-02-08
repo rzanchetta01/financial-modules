@@ -27,6 +27,9 @@ builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e =>
 {
     e.ConnectionString = builder.Configuration.GetConnectionString("psql");
     e.DbContextPooling = true;
+#if DEBUG
+    e.Tracing = true;
+#endif
 });
 
 //Loan Start
@@ -35,6 +38,9 @@ builder.AddNpgsqlDbContext<LoanContext>("dbPostgres", e =>
 {
     e.ConnectionString = builder.Configuration.GetConnectionString("psql");
     e.DbContextPooling = true;
+#if DEBUG
+    e.Tracing = true;
+#endif
 });
 
 //Cache Start
