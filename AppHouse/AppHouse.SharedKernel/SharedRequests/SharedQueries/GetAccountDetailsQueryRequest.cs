@@ -3,5 +3,5 @@ using MediatR;
 
 namespace AppHouse.SharedKernel.SharedRequests.SharedQueries
 {
-    public record GetAccountDetailsQueryRequest(Guid AccountId) : IRequest<AccountDto?>;
+    public record GetAccountDetailsQueryRequest(Guid AccountId) : IRequest<AccountDto>;
 }
