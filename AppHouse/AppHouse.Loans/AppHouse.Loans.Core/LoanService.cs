@@ -30,7 +30,7 @@ namespace AppHouse.Loans.Core
                     return LoanMapping.Map(queryResult.Where(e => e.LoanQualityRating >= accountDto.CreditScore));
             }
 
-            return Enumerable.Empty<LoanDto>();
+            return [];
         }
 
         public async Task Purge(Guid Id, CancellationToken token)

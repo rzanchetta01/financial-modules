@@ -27,7 +27,10 @@ namespace AppHouse.Loans.Core
 
         public async Task<IEnumerable<Loan>> GetAllAvailableLoans(DateOnly maxFeasibleLoanApplyDate, CancellationToken token)
         {
-            return await _loanContext.Loans.Where(loan => loan.IsActive && loan.MaxDateFeasible <= maxFeasibleLoanApplyDate).OrderByDescending(o => o.DateCreated).ToListAsync(token);
+            return await _loanContext.Loans
+                .Where(loan => loan.IsActive && loan.MaxDateFeasible <= maxFeasibleLoanApplyDate)
+                .OrderByDescending(o => o.DateCreated)
+                .ToListAsync(token);
         }
 
         public async Task PurgeAsync(Guid id, CancellationToken token)
