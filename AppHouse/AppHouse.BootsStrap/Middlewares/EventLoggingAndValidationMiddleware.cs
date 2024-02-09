@@ -26,7 +26,6 @@ namespace AppHouse.Gateway.Middlewares
                 TimeStamp: DateTime.UtcNow,
                 Validators: null,
                 PassValidations: true
-                
             );
 
             if (_validators.Any())

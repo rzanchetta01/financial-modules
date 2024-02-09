@@ -28,7 +28,10 @@ builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e =>
     e.ConnectionString = builder.Configuration.GetConnectionString("psql");
     e.DbContextPooling = true;
 #if DEBUG
+    e.Metrics = true;
     e.Tracing = true;
+    e.HealthChecks = true;
+    e.DbContextPooling = false;
 #endif
 });
 
@@ -39,7 +42,10 @@ builder.AddNpgsqlDbContext<LoanContext>("dbPostgres", e =>
     e.ConnectionString = builder.Configuration.GetConnectionString("psql");
     e.DbContextPooling = true;
 #if DEBUG
+    e.Metrics = true;
     e.Tracing = true;
+    e.HealthChecks = true;
+    e.DbContextPooling = false;
 #endif
 });
 
@@ -52,7 +58,9 @@ builder.Services.AddMediatR(c =>
 {
     c.RegisterServicesFromAssemblyContaining<AppHouse.Accounts.Application.Init>();
     c.RegisterServicesFromAssemblyContaining<AppHouse.Loans.Application.Init>();
-
+    
+    //pipeline middlewares
+    c.AddOpenBehavior(typeof(EventLoggingAndValidationMiddleware<,>));
 });
 
 
@@ -61,7 +69,6 @@ builder.Services.AddMediatR(c =>
 #region Middlewares services
 builder.Services.AddTransient<CorsMiddleware>();
 builder.Services.AddTransient<GlobalErrorMiddleware>();
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(EventLoggingAndValidationMiddleware<,>));
 #endregion
 
 builder.Services.AddEndpointsApiExplorer();
