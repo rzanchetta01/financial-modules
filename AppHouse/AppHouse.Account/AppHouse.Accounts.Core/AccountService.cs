@@ -18,17 +18,17 @@ namespace AppHouse.Accounts.Core
         public async Task Create(AccountDto dto, CancellationToken token)
         {
 
-            int startAccountRating = DefineStartAccountRating(dto, token);
+            int startAccountRating = DefineStartAccountRating(dto);
 
             var newDto = dto with { CreditScore = startAccountRating };
             await _accountRepository.CreateAsync(AccountMapping.Map(newDto), token);
         }
 
-        public int DefineStartAccountRating(AccountDto account, CancellationToken token)
+        public int DefineStartAccountRating(AccountDto account)
         {
             int CreditScore = 0;
-            //if (account.Balance >= 6000)
-                //CreditScore += 1;
+            if (account.Income >= 6000)
+                CreditScore += 1;
 
             DateTime birthDate;
             if (DateTime.TryParse(account.BirthDate, out birthDate))
@@ -46,7 +46,8 @@ namespace AppHouse.Accounts.Core
 
             if (account.AddressComplement is not null)
                 CreditScore += 2;
-            if (account.Name.Contains(" ")) // has a surname or is included in the rule of compound names
+
+            if (account.Name.Trim().Contains(" ")) // if name has " " it means it has more than one name
                 CreditScore += 1;
 
             return CreditScore;
