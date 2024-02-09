@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppHouse.Loans.Domain\AppHouse.Loans.Domain.csproj" />
+    <Folder Include="Validator\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Validator\" />
+    <ProjectReference Include="..\..\AppHouse.SharedKernel\AppHouse.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

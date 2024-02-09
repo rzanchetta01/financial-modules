@@ -1,5 +1,4 @@
 ﻿using AppHouse.Accounts.Core.Interfaces;
-using AppHouse.Accounts.Domain.Mapping;
 using AppHouse.SharedKernel.DTOs;
 
 namespace AppHouse.Accounts.Core

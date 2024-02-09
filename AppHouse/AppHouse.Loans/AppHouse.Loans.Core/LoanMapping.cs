@@ -2,7 +2,7 @@
 using AppHouse.SharedKernel.Entities;
 using Riok.Mapperly.Abstractions;
 
-namespace AppHouse.Loans.Domain.Mapping
+namespace AppHouse.Loans.Core
 {
     [Mapper]
     public static partial class LoanMapping

@@ -1,5 +1,4 @@
 ﻿using AppHouse.Loans.Core.Interfaces;
-using AppHouse.Loans.Domain.Mapping;
 using AppHouse.SharedKernel.DTOs;
 
 namespace AppHouse.Loans.Core

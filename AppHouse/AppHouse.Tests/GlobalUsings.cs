@@ -19,5 +19,4 @@ global using AppHouse.Accounts.Application.Validators;
 global using AppHouse.Accounts.Application.Handlers.Queries;
 global using AppHouse.SharedKernel.SharedRequests.SharedQueries;
 global using AppHouse.Loans.Core.Validator;
-global using AppHouse.Accounts.Domain.Mapping;
 global using Microsoft.EntityFrameworkCore;

@@ -2,7 +2,7 @@
 using AppHouse.SharedKernel.DTOs;
 using Riok.Mapperly.Abstractions;
 
-namespace AppHouse.Accounts.Domain.Mapping
+namespace AppHouse.Accounts.Core
 {
     [Mapper]
     public static partial class AccountMapping
