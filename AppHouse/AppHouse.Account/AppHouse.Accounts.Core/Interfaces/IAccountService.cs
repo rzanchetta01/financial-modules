@@ -5,6 +5,6 @@ namespace AppHouse.Accounts.Core.Interfaces
 {
     public interface IAccountService : IBaseService<AccountDto, Guid>
     {
-        int DefineStartAccountRating(AccountDto account, CancellationToken token);
+        int DefineStartAccountRating(AccountDto account);
     }
 }
