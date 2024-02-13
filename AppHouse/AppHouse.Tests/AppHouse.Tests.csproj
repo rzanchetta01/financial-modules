@@ -27,7 +27,7 @@
     <ProjectReference Include="..\AppHouse.Account\AppHouse.Accounts.Application\AppHouse.Accounts.Application.csproj" />
     <ProjectReference Include="..\AppHouse.Aspire\AppHouse.Aspire.AppHost\AppHouse.Aspire.AppHost.csproj" />
     <ProjectReference Include="..\AppHouse.Aspire\AppHouse.Aspire.ServiceDefaults\AppHouse.Aspire.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\AppHouse.BootsStrap\AppHouse.Gateway.csproj" />
+    <ProjectReference Include="..\AppHouse.Gateway\AppHouse.Gateway.csproj" />
     <ProjectReference Include="..\AppHouse.Loans\AppHouse.Loans.Application\AppHouse.Loans.Application.csproj" />
     <ProjectReference Include="..\AppHouse.Payments\AppHouse.Payments.Application\AppHouse.Payments.Application.csproj" />
     <ProjectReference Include="..\AppHouse.SharedKernel\AppHouse.SharedKernel.csproj" />
