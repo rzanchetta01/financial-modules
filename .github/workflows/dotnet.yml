@@ -23,6 +23,9 @@ jobs:
 
     - name: Install .NET Aspire workload
       run: dotnet workload install aspire
+
+    - name: Update workload
+      run: dotnet workload update
       
     - name: Restore dependencies
       run: cd AppHouse && dotnet restore
