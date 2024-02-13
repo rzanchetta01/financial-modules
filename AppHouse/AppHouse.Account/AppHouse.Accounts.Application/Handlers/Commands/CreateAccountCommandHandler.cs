@@ -6,7 +6,7 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Commands
 {
-    public class CreateAccountCommand
+    public class CreateAccountCommandHandler
         (
             IAccountService accountService,
             IMediator mediator 

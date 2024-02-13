@@ -1,10 +1,8 @@
 ﻿using AppHouse.Accounts.Core.Interfaces;
 using AppHouse.SharedKernel.DTOs;
 
-
 namespace AppHouse.Accounts.Core
 {
-
     public class AccountService
         (
         IAccountRepository accountRepository
@@ -71,5 +69,4 @@ namespace AppHouse.Accounts.Core
             await _accountRepository.UpdateAsync(AccountMapping.Map(dto), token);
         }
     }
-
 }

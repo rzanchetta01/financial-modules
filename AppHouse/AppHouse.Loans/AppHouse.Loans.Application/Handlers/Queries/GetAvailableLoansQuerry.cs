@@ -20,7 +20,7 @@ namespace AppHouse.Loans.Application.Handlers.Queries
             if(accountDetails is not null)
                 return await _loanService.GetFeasibleLoans(accountDetails, DateOnly.Parse(request.MaxFeasibleDate), cancellationToken);
 
-            return Enumerable.Empty<LoanDto>();
+            return [];
         }
     }
 }

@@ -1,26 +1,25 @@
 ﻿using AppHouse.Accounts.Core.Interfaces;
 using AppHouse.SharedKernel.BasicEvents;
-using AppHouse.SharedKernel.DTOs;
 using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 using MediatR;
 
 namespace AppHouse.Accounts.Application.Handlers.Commands
 {
-    public class UpdateAccountCommand
+    public class DeleteAccountCommandHandler
         (
             IAccountService accountService,
             IMediator mediator
         )
-        : IRequestHandler<UpdateAccountRequest, bool>
+        : IRequestHandler<DeleteAccountRequest, bool>
     {
         private readonly IAccountService _accountService = accountService;
         private readonly IMediator _mediator = mediator;
 
-        public async Task<bool> Handle(UpdateAccountRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteAccountRequest request, CancellationToken cancellationToken)
         {
-            await _accountService.Update(request.AccountDto, cancellationToken);
+            await _accountService.Purge(request.Id, cancellationToken);
 
-            await _mediator.Publish(new TEntityUpdated<AccountDto>(request.AccountDto), cancellationToken);
+            await _mediator.Publish(new TEntityPurged<Guid>(request.Id), cancellationToken);
             return true;
         }
     }

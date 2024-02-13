@@ -2,7 +2,7 @@ using AppHouse.Accounts.Core;
 using AppHouse.Gateway.Endpoints;
 using AppHouse.Gateway.Middlewares;
 using AppHouse.Loans.Core;
-using AppHouse.SharedKernel.Core.BaseClasses;
+using AppHouse.SharedKernel.BaseClasses;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
