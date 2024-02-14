@@ -34,6 +34,28 @@ namespace AppHouse.Tests.Loans
             _mockLoanService.Verify(v => v.Create(It.IsAny<LoanDto>(), It.IsAny<CancellationToken>()), Times.Once);
             _mockMediator.Verify(v => v.Publish(It.IsAny<TEntityCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
+
+        [Fact]
+        public async Task FailCreateLoanCommandTest()
+        {
+            //Arrange
+            var data = DummyData.DummyExistingActiveLoanDto;//Existing loan should fail loan creation
+            var request = new CreateLoanRequest(data);
+            var token = CancellationToken.None;
+
+            _mockLoanService.Setup(m => m.Create(data, token)).Throws(new Exception("fake exception"));
+
+            var uat = new CreateLoanCommand(_mockLoanService.Object, _mockMediator.Object);
+
+            //Act and Assert
+            await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
+
+            Assert.NotNull(data.Id);
+            Assert.NotNull(data.DateCreated);
+            Assert.NotNull(data.IsActive);
+            _mockLoanService.Verify(v => v.Create(It.IsAny<LoanDto>(), It.IsAny<CancellationToken>()), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEntityCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Never);
+        }   
         
     }
 }

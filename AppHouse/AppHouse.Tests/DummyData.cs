@@ -137,5 +137,20 @@
             DateCreated: null,
             IsActive: null
         );
+
+        public static LoanDto DummyExistingActiveLoanDto { get; } = new LoanDto
+        (
+        CreatorAccountId: Guid.NewGuid(),
+        MaxAmount: 1000M,
+        MinAmount: 100M,
+        MaxDateFeasible: "2023-12-31",
+        MinDateFeasible: "2023-12-31",
+        LoanStyleType: 1,
+        LoanQualityRating: 1,
+        LoanDescription: "testDescription",
+        Id: Guid.NewGuid(),
+        DateCreated: DateTime.Parse("2023-12-31"),
+        IsActive: true
+        );
     }
 }
