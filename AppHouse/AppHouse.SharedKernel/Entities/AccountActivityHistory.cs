@@ -9,7 +9,7 @@ public partial class AccountActivityHistory : BaseEntity
 
     public required Guid LoanId { get; set; }
 
-    public required bool WasPaidCorrectly { get; set; }
+    public required bool IsReceiver { get; set; }
 
     public virtual Account Account { get; set; } = null!;
 

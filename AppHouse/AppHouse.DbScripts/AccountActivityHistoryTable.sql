@@ -4,5 +4,5 @@
     is_active BOOLEAN DEFAULT true,
     account_id UUID NOT NULL REFERENCES account(id),
     loan_id UUID NOT NULL REFERENCES loan(id),
-    was_paid_correctly BOOLEAN NOT NULL
+    is_receiver BOOLEAN NOT NULL
 );

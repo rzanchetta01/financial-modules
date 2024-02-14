@@ -87,7 +87,7 @@ public abstract class BaseContext(DbContextOptions options) : DbContext (options
                 .HasDefaultValue(true)
                 .HasColumnName("is_active");
             entity.Property(e => e.LoanId).HasColumnName("loan_id");
-            entity.Property(e => e.WasPaidCorrectly).HasColumnName("was_paid_correctly");
+            entity.Property(e => e.IsReceiver).HasColumnName("is_receiver");
 
             entity.HasOne(d => d.Account).WithMany(p => p.AccountActivityHistories)
                 .HasForeignKey(d => d.AccountId)
