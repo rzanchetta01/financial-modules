@@ -21,7 +21,7 @@ public partial class Loan : BaseEntity
 
     public string? LoanDescription { get; set; }
 
-    public virtual ICollection<AccountActivityHistory> AccountActivityHistories { get; set; } = new List<AccountActivityHistory>();
+    public virtual ICollection<AccountActivityHistory> AccountActivityHistories { get; set; } = [];
 
     public virtual Account CreatorAccount { get; set; } = null!;
 

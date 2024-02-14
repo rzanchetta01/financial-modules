@@ -13,7 +13,7 @@
             var data = Guid.NewGuid();
             var request = new DeleteAccountRequest(data);
             var token = CancellationToken.None;
-            var uat = new DeleteAccountCommand(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new DeleteAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
 
             //Act
             var result = await uat.Handle(request, token);
@@ -34,7 +34,7 @@
 
             _mockAccountService.Setup(m => m.Purge(data, token)).Throws(new Exception("fake exception"));
 
-            var uat = new DeleteAccountCommand(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new DeleteAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));

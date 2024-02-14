@@ -1,4 +1,9 @@
-﻿namespace AppHouse.Tests.Accounts
+﻿using System.Diagnostics.Metrics;
+using System.Net;
+using System.Reflection.Emit;
+using System.Xml.Linq;
+
+namespace AppHouse.Tests.Accounts
 {
     public class CreateAccountTests
     {
@@ -13,7 +18,7 @@
             var data = DummyData.DummyNewAccountDto;
             var request = new CreateAccountRequest(data);
             var token = CancellationToken.None;
-            var uat = new CreateAccountCommand(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new CreateAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
             
             //Act
             var result = await uat.Handle(request, token);
@@ -37,7 +42,7 @@
 
             _mockAccountService.Setup(m => m.Create(data, token)).Throws(new Exception("fake exception"));
 
-            var uat = new CreateAccountCommand(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new CreateAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
@@ -113,6 +118,42 @@
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () =>  await uat.Create(data, token));
             _mockAccountRepository.Verify(m => m.CreateAsync(It.IsAny<Account>(), token), Times.Once);
+        }
+
+        [Theory]
+        [InlineData(1, "testName", "1987-12-12", null, 1000)]
+        [InlineData(2, "test Name", "1987-12-12", null, 1000)]
+        [InlineData(5, "test Name", "1987-12-12", "assfdafdf", 19000)]
+        public void PassDefineStartAccountRating( int expected, string name, string birthdate, string? addressComplement, decimal income)
+        {
+            //Arrange
+            var dto = new AccountDto(
+                Name: name,
+                Email: "test@email.com",
+                Password: "testPassword",
+                Cellphone: "1197264321",
+                BirthDate: birthdate,
+                Country: "testCountry",
+                State: "testState",
+                City: "testCity",
+                PostalCode: "02582123",
+                Address: "testAddressWithFakeCountryStateAndCity",
+                AddressComplement: addressComplement,
+                Income: income,
+                CreditScore: 0D,
+                Id: null,
+                DateCreated: null,
+                IsActive: null
+                );
+
+            var uat = new AccountService(_mockAccountRepository.Object);
+
+            //Act
+            var result = uat.DefineStartAccountRating(dto);
+
+            //Assert
+            Assert.Equal(expected, result);
+
         }
     }
 }

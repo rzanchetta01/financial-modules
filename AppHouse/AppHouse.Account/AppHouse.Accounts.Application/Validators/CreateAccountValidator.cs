@@ -1,7 +1,7 @@
 ﻿using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 using FluentValidation;
 
-namespace AppHouse.Accounts.Core
+namespace AppHouse.Accounts.Application.Validators
 {
     public class CreateAccountValidator : AbstractValidator<CreateAccountRequest>
     {
@@ -18,7 +18,7 @@ namespace AppHouse.Accounts.Core
             RuleFor(req => req.AccountDto.PostalCode).Matches(@"^\d{8}$");// Eight digits similar to Brazil CEP
             RuleFor(req => req.AccountDto.Address).NotEmpty();
             RuleFor(req => req.AccountDto.Income).NotEmpty().GreaterThanOrEqualTo(0);
-            RuleFor(req => req.AccountDto.CreditScore).NotEmpty().GreaterThanOrEqualTo(0);
+            RuleFor(req => req.AccountDto.CreditScore).Equal(0);
             RuleFor(req => req.AccountDto.Id).Empty();          //Should be null in new accounts
             RuleFor(req => req.AccountDto.DateCreated).Empty(); //Should be null in new accounts
             RuleFor(req => req.AccountDto.IsActive).Empty();    //Should be null in new accounts

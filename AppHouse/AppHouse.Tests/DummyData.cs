@@ -16,7 +16,7 @@
         "testAddressWithFakeCountryStateAndCity",
         "testAddressNumber1",
         1000M,
-        5.0D,
+        0D,
         null,
         null,
         null
