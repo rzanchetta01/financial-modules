@@ -74,6 +74,25 @@ namespace AppHouse.Tests.Loans
             Assert.True(result.IsValid);
             Assert.Empty(result.Errors);
         }
-        
+
+        [Fact]
+        public async Task FailCreateLoanValidatorTest()
+        {
+            //Arrange
+            var requestData = DummyData.DummyNewLoanDto;
+            var newLoanDto = requestData with { MaxAmount = 0 };
+
+            var request = new CreateLoanRequest(newLoanDto); // Use newLoanDto here
+            var token = CancellationToken.None;
+            var uat = new CreateLoanValidator();
+
+            //Act
+            var result = await uat.ValidateAsync(request, token);
+
+            //Assert
+            Assert.False(result.IsValid);
+            Assert.NotEmpty(result.Errors);
+        }
+
     }
 }
