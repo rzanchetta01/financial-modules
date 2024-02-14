@@ -1,4 +1,5 @@
 ﻿using AppHouse.Loans.Application.Handlers.Commands;
+using AppHouse.Loans.Application.Validators.Commands;
 using AppHouse.Loans.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,24 @@ namespace AppHouse.Tests.Loans
             Assert.NotNull(data.IsActive);
             _mockLoanService.Verify(v => v.Create(It.IsAny<LoanDto>(), It.IsAny<CancellationToken>()), Times.Once);
             _mockMediator.Verify(v => v.Publish(It.IsAny<TEntityCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Never);
-        }   
+        }
+
+        [Fact]
+        public async Task PassCreateLoanValidatorTest()
+        {
+            //Arrange
+            var requestData = DummyData.DummyNewLoanDto;
+            var request = new CreateLoanRequest(requestData);
+            var token = CancellationToken.None;
+            var uat = new CreateLoanValidator();
+
+            //Act
+            var result = await uat.ValidateAsync(request, token);
+
+            //Assert
+            Assert.True(result.IsValid);
+            Assert.Empty(result.Errors);
+        }
         
     }
 }
