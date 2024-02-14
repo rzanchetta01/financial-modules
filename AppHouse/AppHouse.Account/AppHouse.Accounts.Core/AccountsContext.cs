@@ -1,4 +1,4 @@
-﻿using AppHouse.SharedKernel.Core.BaseClasses;
+﻿using AppHouse.SharedKernel.BaseClasses;
 using AppHouse.SharedKernel.Entities;
 using Microsoft.EntityFrameworkCore;
 

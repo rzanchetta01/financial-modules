@@ -2,8 +2,7 @@ using AppHouse.Accounts.Core;
 using AppHouse.Gateway.Endpoints;
 using AppHouse.Gateway.Middlewares;
 using AppHouse.Loans.Core;
-using AppHouse.SharedKernel.Core.BaseClasses;
-using MediatR;
+using AppHouse.SharedKernel.BaseClasses;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
@@ -77,6 +76,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -23,10 +23,11 @@ jobs:
 
     - name: Install .NET Aspire workload
       run: dotnet workload install aspire
+
+    - name: Update workload
+      run: dotnet workload update
       
     - name: Restore dependencies
       run: cd AppHouse && dotnet restore
-    - name: Build
-      run: cd AppHouse && dotnet build --no-restore
     - name: Test
-      run: cd AppHouse && dotnet test --no-build --verbosity normal
+      run: cd AppHouse && dotnet test --verbosity normal

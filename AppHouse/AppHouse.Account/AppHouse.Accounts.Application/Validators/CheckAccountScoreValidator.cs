@@ -1,7 +1,7 @@
 ﻿using AppHouse.SharedKernel.SharedRequests.SharedQueries;
 using FluentValidation;
 
-namespace AppHouse.Loans.Core.Validator
+namespace AppHouse.Accounts.Application.Validators
 {
     public class CheckAccountScoreValidator : AbstractValidator<CheckAccountScoreQueryRequest>
     {

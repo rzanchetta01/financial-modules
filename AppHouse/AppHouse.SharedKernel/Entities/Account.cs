@@ -31,7 +31,7 @@ public partial class Account : BaseEntity
 
     public required double CreditScore { get; set; }
 
-    public virtual ICollection<AccountActivityHistory> AccountActivityHistories { get; set; } = new List<AccountActivityHistory>();
+    public virtual ICollection<AccountActivityHistory> AccountActivityHistories { get; set; } = [];
 
-    public virtual ICollection<Loan> Loans { get; set; } = new List<Loan>();
+    public virtual ICollection<Loan> Loans { get; set; } = [];
 }

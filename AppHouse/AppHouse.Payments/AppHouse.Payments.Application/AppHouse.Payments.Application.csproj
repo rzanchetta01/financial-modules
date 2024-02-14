@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppHouse.Payments.Core\AppHouse.Payments.Core.csproj" />
+  </ItemGroup>
+
 </Project>

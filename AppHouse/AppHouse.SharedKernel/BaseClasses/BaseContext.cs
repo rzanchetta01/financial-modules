@@ -3,7 +3,7 @@ using AppHouse.SharedKernel.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace AppHouse.SharedKernel.Core.BaseClasses;
+namespace AppHouse.SharedKernel.BaseClasses;
 
 public abstract class BaseContext(DbContextOptions options) : DbContext (options)
 {

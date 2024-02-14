@@ -1,7 +1,7 @@
 ﻿using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 using FluentValidation;
 
-namespace AppHouse.Accounts.Core
+namespace AppHouse.Accounts.Application.Validators
 {
     public class CreateAccountValidator : AbstractValidator<CreateAccountRequest>
     {
