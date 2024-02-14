@@ -8,10 +8,10 @@ namespace AppHouse.SharedKernel.Interfaces
         IQueryable<TEntity> Table();
         Task<TEntity?> FindByIdAsync(TKey id, CancellationToken token);
         Task CreateAsync(TEntity entity, CancellationToken token);
-        Task CreateRangeAsync(IEnumerable<TEntity> entity, CancellationToken token);
+        Task CreateRangeAsync(IEnumerable<TEntity> entities, CancellationToken token);
         Task UpdateAsync(TEntity entity, CancellationToken token);
-        Task UpdateRangeAsync(IEnumerable<TEntity> entity, CancellationToken token);
+        Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken token);
         Task PurgeAsync(TKey id, CancellationToken token);
-        Task PurgeRangeAsync(IEnumerable<TKey> id, CancellationToken token);
+        Task PurgeRangeAsync(IEnumerable<TKey> ids, CancellationToken token);
     }
 }

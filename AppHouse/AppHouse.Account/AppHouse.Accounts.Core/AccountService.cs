@@ -28,8 +28,7 @@ namespace AppHouse.Accounts.Core
             if (account.Income >= 6000)
                 CreditScore += 1;
 
-            DateTime birthDate;
-            if (DateTime.TryParse(account.BirthDate, out birthDate))
+            if (DateTime.TryParse(account.BirthDate, out DateTime birthDate))
             {
                 DateTime currentDate = DateTime.Today;
                 int age = currentDate.Year - birthDate.Year;
@@ -45,7 +44,7 @@ namespace AppHouse.Accounts.Core
             if (account.AddressComplement is not null)
                 CreditScore += 2;
 
-            if (account.Name.Trim().Contains(" ")) // if name has " " it means it has more than one name
+            if (account.Name.Trim().Contains(' ')) // if name has " " it means it has more than one name
                 CreditScore += 1;
 
             return CreditScore;
