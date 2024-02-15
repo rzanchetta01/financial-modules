@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Events
 {
-    public class LoanCreatedInsertIntoAccountHistoryEventHandler(IAccountActivityHistoryService accountActivityHistoryService) : INotificationHandler<TEntityCreated<LoanDto>>
+    public class LoanCreatedInsertIntoAccountHistoryEvent(IAccountActivityHistoryService accountActivityHistoryService) : INotificationHandler<TEntityCreated<LoanDto>>
     {
         private readonly IAccountActivityHistoryService _accountActivityHistoryService = accountActivityHistoryService;
         public async Task Handle(TEntityCreated<LoanDto> notification, CancellationToken cancellationToken)

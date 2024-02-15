@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using AppHouse.Accounts.Application.Validators;
 using AppHouse.SharedKernel.SharedRequests.SharedCommands;
+using AppHouse.AccountActivityHistories.Core;
 
 namespace AppHouse.Accounts.Application
 {
@@ -21,12 +22,14 @@ namespace AppHouse.Accounts.Application
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IAccountActivityHistoryRepository, AccountActivityHistoryRepository>();
             return services;
         }
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAccountActivityHistoryService, AccountActivityHistoryService>();
             return services;
         }
 

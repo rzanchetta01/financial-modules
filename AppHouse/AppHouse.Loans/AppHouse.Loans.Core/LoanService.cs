@@ -1,15 +1,23 @@
 ﻿using AppHouse.Loans.Core.Interfaces;
+using AppHouse.SharedKernel.BasicEvents;
 using AppHouse.SharedKernel.DTOs;
+using MediatR;
 
 namespace AppHouse.Loans.Core
 {
-    public class LoanService(ILoanRepository loanRepository) : ILoanService
+    public class LoanService(
+        ILoanRepository loanRepository,
+        IMediator mediator
+        ) : ILoanService
     {
         private readonly ILoanRepository _loanRepository = loanRepository;
+        private readonly IMediator _mediator = mediator;
 
         public async Task Create(LoanDto dto, CancellationToken token)
         {
-            await _loanRepository.CreateAsync(LoanMapping.Map(dto), token);
+            var entity = LoanMapping.Map(dto);
+            await _loanRepository.CreateAsync(entity, token);
+            await _mediator.Publish(new TEntityCreated<LoanDto>(LoanMapping.Map(entity)), token);
         }
 
         public async Task<LoanDto?> FindById(Guid Id, CancellationToken token)

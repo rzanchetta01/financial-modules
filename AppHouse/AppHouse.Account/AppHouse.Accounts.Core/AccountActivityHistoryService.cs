@@ -10,6 +10,7 @@ namespace AppHouse.Accounts.Core
         public async Task Create(AccountActivityHistoryDto dto, CancellationToken token)
         {
             await _accountActivityHistoryRepository.CreateAsync(AccountMapping.Map(dto), token);
+
         }
 
         public async Task<AccountActivityHistoryDto?> FindById(Guid Id, CancellationToken token)
