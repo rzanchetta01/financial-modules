@@ -7,6 +7,7 @@ namespace AppHouse.Accounts.Core;
 public class AccountsContext(DbContextOptions<AccountsContext> options) : BaseContext(options)
 {
     public virtual DbSet<Account> Accounts { get; set; }
+    public virtual DbSet<AccountActivityHistory> AccountActivityHistories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
