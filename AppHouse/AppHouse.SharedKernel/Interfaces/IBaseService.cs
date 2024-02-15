@@ -7,7 +7,7 @@ namespace AppHouse.SharedKernel.Interfaces
     {
         Task Create(TDto dto, CancellationToken token);
         Task Update(TDto dto, CancellationToken token);
-        Task Purge(TKey dto, CancellationToken token);
+        Task Purge(TKey id, CancellationToken token);
         Task<TDto?> FindById(TKey Id, CancellationToken token);
     }
 }

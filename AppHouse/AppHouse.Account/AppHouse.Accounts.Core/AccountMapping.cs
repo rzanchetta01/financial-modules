@@ -16,5 +16,12 @@ namespace AppHouse.Accounts.Core
         public static partial IEnumerable<AccountDto> Map(IEnumerable<Account>entity);
 
 
+        public static partial AccountActivityHistory Map(AccountActivityHistoryDto dto);
+
+        public static partial AccountActivityHistoryDto Map(AccountActivityHistory entity);
+
+        public static partial IEnumerable<AccountActivityHistory> Map(IEnumerable<AccountActivityHistoryDto> dto);
+
+        public static partial IEnumerable<AccountActivityHistoryDto> Map(IEnumerable<AccountActivityHistory> entity);
     }
 }
