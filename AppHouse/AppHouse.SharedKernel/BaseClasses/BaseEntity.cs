@@ -1,6 +1,6 @@
 ﻿namespace AppHouse.SharedKernel.BaseClasses
 {
-    public class BaseEntity(Guid? id = null, DateTime? dateCreated = null, bool? isActive = null)
+    public abstract class BaseEntity(Guid? id = null, DateTime? dateCreated = null, bool? isActive = null)
     {
         public Guid Id { get; set; } = id ?? Guid.NewGuid();
         public DateTime DateCreated { get; set; } = dateCreated ?? DateTime.UtcNow;
