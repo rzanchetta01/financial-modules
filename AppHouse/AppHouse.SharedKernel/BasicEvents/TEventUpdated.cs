@@ -2,5 +2,5 @@
 
 namespace AppHouse.SharedKernel.BasicEvents
 {
-    public record TEntityCreated<T>(T Data) : INotification;
+    public record TEventUpdated<T>(T data) : INotification;
 }
