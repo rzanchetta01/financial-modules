@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AppHouse.Loans.Application.Handlers.Commands
 {
-    public class CreateLoanCommand//change name to CreateLoanCommandHandler ??
+    public class CreateLoanCommandHandler//change name to CreateLoanCommandHandler ??
         (
             ILoanService loanService,
             IMediator mediator

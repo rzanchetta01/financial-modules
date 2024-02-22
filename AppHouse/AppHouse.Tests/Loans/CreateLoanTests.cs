@@ -1,11 +1,13 @@
 ﻿using AppHouse.Loans.Application.Handlers.Commands;
 using AppHouse.Loans.Application.Validators.Commands;
+using AppHouse.Loans.Core;
 using AppHouse.Loans.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit.Abstractions;
 
 namespace AppHouse.Tests.Loans
 {
@@ -22,7 +24,7 @@ namespace AppHouse.Tests.Loans
             var data = DummyData.DummyNewLoanDto;
             var request = new CreateLoanRequest(data);
             var token = CancellationToken.None;
-            var uat = new CreateLoanCommand(_mockLoanService.Object, _mockMediator.Object);
+            var uat = new CreateLoanCommandHandler(_mockLoanService.Object, _mockMediator.Object);
 
             //Act
             var result = await uat.Handle(request, token);
@@ -46,7 +48,7 @@ namespace AppHouse.Tests.Loans
 
             _mockLoanService.Setup(m => m.Create(data, token)).Throws(new Exception("fake exception"));
 
-            var uat = new CreateLoanCommand(_mockLoanService.Object, _mockMediator.Object);
+            var uat = new CreateLoanCommandHandler(_mockLoanService.Object, _mockMediator.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
@@ -92,6 +94,22 @@ namespace AppHouse.Tests.Loans
             //Assert
             Assert.False(result.IsValid);
             Assert.NotEmpty(result.Errors);
+        }
+
+        [Fact]
+        public async Task PassCreateLoanServiceTest()
+        {
+            //Arrange
+            var data = DummyData.DummyNewLoanDto;
+            var token = CancellationToken.None;
+            var uat = new LoanService(_mockLoanRepository.Object, _mockMediator.Object);
+
+            //Act
+            await uat.Create(data, token);
+
+            //Assert
+            _mockLoanRepository.Verify(v => v.CreateAsync(It.IsAny<Loan>(), It.IsAny<CancellationToken>()), Times.Once);
+            
         }
 
     }
