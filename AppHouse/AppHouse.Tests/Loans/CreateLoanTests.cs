@@ -2,12 +2,6 @@
 using AppHouse.Loans.Application.Validators.Commands;
 using AppHouse.Loans.Core;
 using AppHouse.Loans.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit.Abstractions;
 
 namespace AppHouse.Tests.Loans
 {

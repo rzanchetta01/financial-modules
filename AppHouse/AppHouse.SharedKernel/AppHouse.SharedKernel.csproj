@@ -16,6 +16,7 @@
     <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
     <PackageReference Include="Riok.Mapperly" Version="3.4.0-next.2" />
+	<ProjectReference Include="..\AppHouse.SharedKernel\AppHouse.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>
