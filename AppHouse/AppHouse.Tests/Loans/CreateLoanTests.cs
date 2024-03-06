@@ -112,5 +112,20 @@ namespace AppHouse.Tests.Loans
             
         }
 
+        [Fact]
+        public async Task FailCreateLoanServiceTest()
+        {
+            //Arrange
+            var data = DummyData.DummyNewLoanDto;
+            var token = CancellationToken.None;
+            var uat = new LoanService(_mockLoanRepository.Object, _mockMediator.Object);
+
+            _mockLoanRepository.Setup(m => m.CreateAsync(It.IsAny<Loan>(), It.IsAny<CancellationToken>())).Throws(new Exception("fake exception"));
+
+            //Act and Assert
+            await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Create(data, token));
+        }
+
+        //precisa do [theory]? como no arquivo CreateAccountTests.cs?
     }
 }
