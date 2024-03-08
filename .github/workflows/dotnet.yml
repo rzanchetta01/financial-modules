@@ -19,7 +19,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 8.0.200
 
     - name: Install .NET Aspire workload
       run: dotnet workload install aspire
@@ -29,5 +29,9 @@ jobs:
       
     - name: Restore dependencies
       run: cd AppHouse && dotnet restore
+      
+    - name: Build
+      run: cd AppHouse && dotnet build --no-restore
+      
     - name: Test
-      run: cd AppHouse && dotnet test --verbosity normal
+      run: cd AppHouse && dotnet test --no-build --verbosity normal

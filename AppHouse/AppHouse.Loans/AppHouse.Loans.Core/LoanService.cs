@@ -17,7 +17,7 @@ namespace AppHouse.Loans.Core
         {
             var entity = LoanMapping.Map(dto);
             await _loanRepository.CreateAsync(entity, token);
-            await _mediator.Publish(new TEntityCreated<LoanDto>(LoanMapping.Map(entity)), token);
+            await _mediator.Publish(new TEventCreated<LoanDto>(LoanMapping.Map(entity)), token);
         }
 
         public async Task<LoanDto?> FindById(Guid Id, CancellationToken token)

@@ -5,18 +5,18 @@ using MediatR;
 
 namespace AppHouse.Accounts.Application.Events
 {
-    public class LoanCreatedInsertIntoAccountHistoryEvent(IAccountActivityHistoryService accountActivityHistoryService) : INotificationHandler<TEntityCreated<LoanDto>>
+    public class LoanCreatedInsertIntoAccountHistoryEvent(IAccountActivityHistoryService accountActivityHistoryService) : INotificationHandler<TEventCreated<LoanDto>>
     {
         private readonly IAccountActivityHistoryService _accountActivityHistoryService = accountActivityHistoryService;
-        public async Task Handle(TEntityCreated<LoanDto> notification, CancellationToken cancellationToken)
+        public async Task Handle(TEventCreated<LoanDto> notification, CancellationToken cancellationToken)
         {
             if (notification.Data.Id is not null)
             {
                 var dto = new AccountActivityHistoryDto
                     (
-                        notification.Data.CreatorAccountId,
-                        notification.Data.Id.Value,
-                        false,
+                        AccountId: notification.Data.CreatorAccountId,
+                        LoanId: notification.Data.Id.Value,
+                        IsReceiver: false,
                         null,
                         null,
                         null

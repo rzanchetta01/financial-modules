@@ -1,4 +1,4 @@
 ﻿namespace AppHouse.SharedKernel.BaseClasses
 {
-    public record BaseDto(Guid? Id, DateTime? DateCreated, bool? IsActive);
+    public abstract record BaseDto(Guid? Id, DateTime? DateCreated, bool? IsActive);
 }

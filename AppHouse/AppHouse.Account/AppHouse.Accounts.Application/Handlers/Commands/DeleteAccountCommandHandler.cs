@@ -19,7 +19,7 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
         {
             await _accountService.Purge(request.Id, cancellationToken);
 
-            await _mediator.Publish(new TEntityPurged<Guid>(request.Id), cancellationToken);
+            await _mediator.Publish(new TEventPurged<Guid>(request.Id), cancellationToken);
             return true;
         }
     }
