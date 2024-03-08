@@ -2,6 +2,8 @@
 using AppHouse.Loans.Application.Validators.Commands;
 using AppHouse.Loans.Core;
 using AppHouse.Loans.Core.Interfaces;
+using AppHouse.SharedKernel.BasicEvents;
+
 
 namespace AppHouse.Tests.Loans
 {
