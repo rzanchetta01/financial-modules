@@ -21,7 +21,7 @@
             //Assert
             Assert.True(result);
             _mockAccountService.Verify(v => v.Update(It.IsAny<AccountDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEntityUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -43,7 +43,7 @@
             Assert.NotNull(data.DateCreated);
             Assert.NotNull(data.IsActive);
             _mockAccountService.Verify(v => v.Update(It.IsAny<AccountDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEntityUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Never);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]

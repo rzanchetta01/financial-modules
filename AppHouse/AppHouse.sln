@@ -39,6 +39,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHouse.Aspire.AppHost", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHouse.Aspire.ServiceDefaults", "AppHouse.Aspire\AppHouse.Aspire.ServiceDefaults\AppHouse.Aspire.ServiceDefaults.csproj", "{97F2D4C5-A846-4BAD-9CDD-A53570F2A79B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppHouse.Docker", "AppHouse.Docker", "{2E7AB6D9-5F4D-4EF8-BAEF-3A09AE157079}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
