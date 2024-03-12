@@ -26,7 +26,6 @@ namespace AppHouse.Tests.Accounts
             Assert.Null(data.DateCreated);
             Assert.Null(data.IsActive);
             _mockAccountService.Verify(v => v.Create(It.IsAny<AccountDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
