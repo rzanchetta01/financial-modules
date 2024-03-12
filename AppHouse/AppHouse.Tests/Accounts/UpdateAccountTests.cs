@@ -87,7 +87,7 @@
             var data = DummyData.DummyExistingActiveAccountDto;
             var token = CancellationToken.None;
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act
             await uat.Update(data, token);
@@ -105,7 +105,7 @@
 
             _mockAccountRepository.Setup(m => m.UpdateAsync(It.IsAny<Account>(), token)).Throws(new Exception("fake exception"));
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Update(data, token));
