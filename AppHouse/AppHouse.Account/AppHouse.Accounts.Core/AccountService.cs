@@ -75,6 +75,8 @@ namespace AppHouse.Accounts.Core
         public async Task Update(AccountDto dto, CancellationToken token)
         {
             await _accountRepository.UpdateAsync(AccountMapping.Map(dto), token);
+            await _mediator.Publish(new TEventUpdated<AccountDto>(dto), token);
+
         }
     }
 

@@ -20,7 +20,6 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
         {
             await _accountService.Update(request.AccountDto, cancellationToken);
 
-            await _mediator.Publish(new TEventUpdated<AccountDto>(request.AccountDto), cancellationToken);
             return true;
         }
     }

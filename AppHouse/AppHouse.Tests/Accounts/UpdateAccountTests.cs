@@ -21,7 +21,6 @@
             //Assert
             Assert.True(result);
             _mockAccountService.Verify(v => v.Update(It.IsAny<AccountDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
