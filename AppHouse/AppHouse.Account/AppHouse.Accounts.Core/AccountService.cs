@@ -2,6 +2,7 @@
 using AppHouse.SharedKernel.DTOs;
 using MediatR;
 using AppHouse.SharedKernel.BasicEvents;
+using System.Threading;
 
 
 namespace AppHouse.Accounts.Core
@@ -68,6 +69,7 @@ namespace AppHouse.Accounts.Core
         public async Task Purge(Guid Id, CancellationToken token)
         {
             await _accountRepository.PurgeAsync(Id, token);
+            await _mediator.Publish(new TEventPurged<Guid>(Id), token);
         }
 
         public async Task Update(AccountDto dto, CancellationToken token)

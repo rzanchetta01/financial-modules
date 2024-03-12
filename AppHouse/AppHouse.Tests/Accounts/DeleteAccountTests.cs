@@ -21,7 +21,6 @@
             //Assert
             Assert.True(result);
             _mockAccountService.Verify(v => v.Purge(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
