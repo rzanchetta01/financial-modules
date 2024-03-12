@@ -20,7 +20,6 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
         public async Task<bool> Handle(CreateAccountRequest request, CancellationToken cancellationToken)
         {
             await _accountService.Create(request.AccountDto, cancellationToken);
-            await _mediator.Publish(new TEventCreated<AccountDto>(request.AccountDto), cancellationToken);
             return true;
         }               
     }
