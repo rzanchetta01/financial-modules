@@ -84,7 +84,7 @@
             var data = Guid.NewGuid();
             var token = CancellationToken.None;
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act
             await uat.Purge(data, token);
@@ -102,7 +102,7 @@
 
             _mockAccountRepository.Setup(m => m.PurgeAsync(It.IsAny<Guid>(), token)).Throws(new Exception("fake exceptions"));
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act and Assert
             await Assert.ThrowsAsync<Exception>(() => uat.Purge(data, token));
