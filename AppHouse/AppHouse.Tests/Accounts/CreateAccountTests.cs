@@ -1,7 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using System.Net;
-using System.Reflection.Emit;
-using System.Xml.Linq;
+﻿
 
 namespace AppHouse.Tests.Accounts
 {
@@ -95,7 +92,7 @@ namespace AppHouse.Tests.Accounts
             var data = DummyData.DummyNewAccountDto;
             var token = CancellationToken.None;
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
             
             //Act
             await uat.Create(data, token);
@@ -113,7 +110,7 @@ namespace AppHouse.Tests.Accounts
 
             _mockAccountRepository.Setup(m => m.CreateAsync(It.IsAny<Account>(), token)).Throws(new Exception("fake exception"));
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
         
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () =>  await uat.Create(data, token));
@@ -146,7 +143,7 @@ namespace AppHouse.Tests.Accounts
                 IsActive: null
                 );
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act
             var result = uat.DefineStartAccountRating(dto);
