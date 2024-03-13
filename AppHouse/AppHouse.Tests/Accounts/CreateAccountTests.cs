@@ -98,6 +98,7 @@ namespace AppHouse.Tests.Accounts
 
             //Assert
             _mockAccountRepository.Verify(m => m.CreateAsync(It.IsAny<Account>(), token), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]

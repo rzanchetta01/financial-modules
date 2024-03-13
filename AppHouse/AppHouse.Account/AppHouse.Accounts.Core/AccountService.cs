@@ -26,7 +26,6 @@ namespace AppHouse.Accounts.Core
 
             var newDto = dto with { CreditScore = startAccountRating };
             await _accountRepository.CreateAsync(AccountMapping.Map(newDto), token);
-
             await _mediator.Publish(new TEventCreated<AccountDto>(newDto), token);
         }
 
@@ -76,7 +75,6 @@ namespace AppHouse.Accounts.Core
         {
             await _accountRepository.UpdateAsync(AccountMapping.Map(dto), token);
             await _mediator.Publish(new TEventUpdated<AccountDto>(dto), token);
-
         }
     }
 
