@@ -29,7 +29,6 @@ namespace AppHouse.Tests.Loans
             Assert.Null(data.DateCreated);
             Assert.Null(data.IsActive);
             _mockLoanService.Verify(v => v.Create(It.IsAny<LoanDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -51,7 +50,6 @@ namespace AppHouse.Tests.Loans
             Assert.NotNull(data.DateCreated);
             Assert.NotNull(data.IsActive);
             _mockLoanService.Verify(v => v.Create(It.IsAny<LoanDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -103,7 +101,7 @@ namespace AppHouse.Tests.Loans
 
             //Assert
             _mockLoanRepository.Verify(v => v.CreateAsync(It.IsAny<Loan>(), It.IsAny<CancellationToken>()), Times.Once);
-            
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
