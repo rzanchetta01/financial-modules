@@ -115,6 +115,7 @@ namespace AppHouse.Tests.Accounts
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () =>  await uat.Create(data, token));
             _mockAccountRepository.Verify(m => m.CreateAsync(It.IsAny<Account>(), token), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Theory]
