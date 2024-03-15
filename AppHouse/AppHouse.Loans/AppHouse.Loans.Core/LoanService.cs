@@ -44,6 +44,7 @@ namespace AppHouse.Loans.Core
         public async Task Purge(Guid Id, CancellationToken token)
         {
             await _loanRepository.PurgeAsync(Id, token);
+            await _mediator.Publish(new TEventCreated<Guid>(Id), token);
         }
 
         public async Task Update(LoanDto dto, CancellationToken token)
