@@ -50,6 +50,7 @@ namespace AppHouse.Loans.Core
         public async Task Update(LoanDto dto, CancellationToken token)
         {
             await _loanRepository.CreateAsync(LoanMapping.Map(dto), token);
+            await _mediator.Publish(new TEventCreated<LoanDto>(dto), token);
         }
     }
 }
