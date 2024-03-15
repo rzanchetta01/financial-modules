@@ -1,16 +1,23 @@
 ﻿using AppHouse.Accounts.Core.Interfaces;
+using AppHouse.SharedKernel.BasicEvents;
 using AppHouse.SharedKernel.DTOs;
+using MediatR;
 
 namespace AppHouse.Accounts.Core
 {
-    public class AccountActivityHistoryService(IAccountActivityHistoryRepository accountActivityHistoryRepository) : IAccountActivityHistoryService
+    public class AccountActivityHistoryService
+        (
+        IAccountActivityHistoryRepository accountActivityHistoryRepository, 
+        IMediator mediator
+        ) : IAccountActivityHistoryService
     {
+        private readonly IMediator _mediator = mediator;
         private readonly IAccountActivityHistoryRepository _accountActivityHistoryRepository = accountActivityHistoryRepository;
 
         public async Task Create(AccountActivityHistoryDto dto, CancellationToken token)
         {
             await _accountActivityHistoryRepository.CreateAsync(AccountMapping.Map(dto), token);
-
+            await _mediator.Publish(new TEventCreated<AccountActivityHistoryDto>(dto), token);
         }
 
         public async Task<AccountActivityHistoryDto?> FindById(Guid Id, CancellationToken token)
