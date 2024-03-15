@@ -15,7 +15,7 @@ namespace AppHouse.Tests.Accounts
             var data = DummyData.DummyNewAccountDto;
             var request = new CreateAccountRequest(data);
             var token = CancellationToken.None;
-            var uat = new CreateAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new CreateAccountCommandHandler(_mockAccountService.Object);
             
             //Act
             var result = await uat.Handle(request, token);
@@ -32,13 +32,13 @@ namespace AppHouse.Tests.Accounts
         public async Task FailCreateAccountCommandTest()
         {
             //Arrange
-            var data = DummyData.DummyExistingActiveAccountDto;//Existing account should fail account creation
+            var data = DummyData.DummyExistingActiveAccountDto;
             var request = new CreateAccountRequest(data);
             var token = CancellationToken.None;
 
             _mockAccountService.Setup(m => m.Create(data, token)).Throws(new Exception("fake exception"));
 
-            var uat = new CreateAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new CreateAccountCommandHandler(_mockAccountService.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
@@ -105,7 +105,7 @@ namespace AppHouse.Tests.Accounts
         public async Task FailCreateAccountServiceTest()
         {
             //Arrange
-            var data = DummyData.DummyExistingDisabledAccountDto; //Should fail with existing accounts
+            var data = DummyData.DummyExistingDisabledAccountDto;
             var token = CancellationToken.None;
 
             _mockAccountRepository.Setup(m => m.CreateAsync(It.IsAny<Account>(), token)).Throws(new Exception("fake exception"));

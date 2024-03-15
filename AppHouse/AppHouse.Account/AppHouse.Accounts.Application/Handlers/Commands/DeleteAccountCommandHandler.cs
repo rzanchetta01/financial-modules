@@ -7,17 +7,19 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
 {
     public class DeleteAccountCommandHandler
         (
-            IAccountService accountService,
-            IMediator mediator
+            IAccountService accountService        
         )
         : IRequestHandler<DeleteAccountRequest, bool>
     {
         private readonly IAccountService _accountService = accountService;
-        private readonly IMediator _mediator = mediator;
 
         public async Task<bool> Handle(DeleteAccountRequest request, CancellationToken cancellationToken)
         {
             await _accountService.Purge(request.Id, cancellationToken);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             return true;
         }
     }

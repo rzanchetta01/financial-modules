@@ -91,8 +91,8 @@
             await uat.UpdateAsync(dataOutputResult, token);
 
             //Assert
-            Assert.Equal(dataInput, dataOutputResult); //Check if entity tracker works as expected
-            Assert.Equal(1, await context.Accounts.CountAsync()); //Should not increase or decrease entities in database
+            Assert.Equal(dataInput, dataOutputResult);
+            Assert.Equal(1, await context.Accounts.CountAsync());
         }
 
         [Fact]
@@ -108,7 +108,7 @@
             var uat = new AccountRepository(context);
             var data = AccountMapping.Map(DummyData.DummyNewAccountDto);
             var token = CancellationToken.None;
-            var dtoData = AccountMapping.Map(data); // force remove change tracker by transforming to dto
+            var dtoData = AccountMapping.Map(data);
 
             await uat.CreateAsync(data, token);
 
@@ -186,8 +186,8 @@
             await uat.UpdateRangeAsync(dataOutputResult, token);
 
             //Assert
-            Assert.Equal(dataInput, dataOutputResult); //Check if entity tracker works as expected
-            Assert.Equal(dataInput.Count, await context.Accounts.CountAsync()); //Should not increase or decrease entities in database
+            Assert.Equal(dataInput, dataOutputResult); 
+            Assert.Equal(dataInput.Count, await context.Accounts.CountAsync());
         }
 
         [Fact]
