@@ -8,13 +8,11 @@ namespace AppHouse.Loans.Application.Handlers.Commands
 {
     public class CreateLoanCommandHandler
         (
-            ILoanService loanService,
-            IMediator mediator
+            ILoanService loanService
         )
         : IRequestHandler<CreateLoanRequest, bool>
     {
         private readonly ILoanService _loanService = loanService;
-        private readonly IMediator _mediator = mediator;
 
         public async Task<bool> Handle(CreateLoanRequest request, CancellationToken cancellationToken)
         {

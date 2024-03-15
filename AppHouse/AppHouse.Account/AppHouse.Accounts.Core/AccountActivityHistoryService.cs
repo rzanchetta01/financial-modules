@@ -24,8 +24,6 @@ namespace AppHouse.Accounts.Core
         {
             var entity = await _accountActivityHistoryRepository.FindByIdAsync(Id, token);
 
-            //Shoud I add the publish here??
-
             if (entity is not null)
                 return AccountMapping.Map(entity);
             return null;

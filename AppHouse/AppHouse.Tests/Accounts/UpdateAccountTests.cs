@@ -42,7 +42,6 @@
             Assert.NotNull(data.DateCreated);
             Assert.NotNull(data.IsActive);
             _mockAccountService.Verify(v => v.Update(It.IsAny<AccountDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -93,6 +92,7 @@
 
             //Assert
             _mockAccountRepository.Verify(m => m.UpdateAsync(It.IsAny<Account>(), token), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -109,6 +109,7 @@
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Update(data, token));
             _mockAccountRepository.Verify(m => m.UpdateAsync(It.IsAny<Account>(), token), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventUpdated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
     }
 }

@@ -39,7 +39,6 @@
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
 
             _mockAccountService.Verify(v => v.Purge(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -90,6 +89,7 @@
     
             //Assert
             _mockAccountRepository.Verify(m => m.PurgeAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -107,6 +107,7 @@
             await Assert.ThrowsAsync<Exception>(() => uat.Purge(data, token));
 
             _mockAccountRepository.Verify(m => m.PurgeAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
     }
 }
