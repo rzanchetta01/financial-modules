@@ -23,6 +23,9 @@ namespace AppHouse.Accounts.Core
         public async Task<AccountActivityHistoryDto?> FindById(Guid Id, CancellationToken token)
         {
             var entity = await _accountActivityHistoryRepository.FindByIdAsync(Id, token);
+
+            //Shoud I add the publish here??
+
             if (entity is not null)
                 return AccountMapping.Map(entity);
             return null;
@@ -31,6 +34,8 @@ namespace AppHouse.Accounts.Core
         public async Task Purge(Guid id, CancellationToken token)
         {
             await _accountActivityHistoryRepository.PurgeAsync(id, token);
+            await _mediator.Publish(new TEventCreated<Guid>(id), token);
+
         }
 
         public async Task Update(AccountActivityHistoryDto dto, CancellationToken token)
