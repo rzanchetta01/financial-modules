@@ -17,10 +17,6 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
         public async Task<bool> Handle(UpdateAccountRequest request, CancellationToken cancellationToken)
         {
             await _accountService.Update(request.AccountDto, cancellationToken);
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
             return true;
         }
     }

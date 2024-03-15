@@ -16,10 +16,6 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
         public async Task<bool> Handle(DeleteAccountRequest request, CancellationToken cancellationToken)
         {
             await _accountService.Purge(request.Id, cancellationToken);
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
             return true;
         }
     }
