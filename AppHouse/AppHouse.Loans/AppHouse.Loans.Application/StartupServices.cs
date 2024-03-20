@@ -1,7 +1,7 @@
-﻿using AppHouse.Loans.Application.Validators.Commands;
+﻿using AppHouse.Loans.Application.Requests.Commands;
+using AppHouse.Loans.Application.Validators.Commands;
 using AppHouse.Loans.Core;
 using AppHouse.Loans.Core.Interfaces;
-using AppHouse.SharedKernel.SharedRequests.SharedCommands;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

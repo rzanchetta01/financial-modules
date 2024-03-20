@@ -1,6 +1,6 @@
 ﻿using AppHouse.SharedKernel.BaseClasses;
 
-namespace AppHouse.SharedKernel.Entities;
+namespace AppHouse.Loans.Core;
 
 public partial class Loan : BaseEntity
 {
@@ -21,8 +21,5 @@ public partial class Loan : BaseEntity
 
     public string? LoanDescription { get; set; }
 
-    public virtual ICollection<AccountActivityHistory> AccountActivityHistories { get; set; } = [];
-
-    public virtual Account CreatorAccount { get; set; } = null!;
 
 }

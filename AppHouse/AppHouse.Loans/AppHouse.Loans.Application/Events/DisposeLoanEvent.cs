@@ -1,6 +1,6 @@
-﻿using AppHouse.Loans.Core.Interfaces;
+﻿using AppHouse.Loans.Core;
+using AppHouse.Loans.Core.Interfaces;
 using AppHouse.SharedKernel.BasicEvents;
-using AppHouse.SharedKernel.DTOs;
 using MediatR;
 
 namespace AppHouse.Loans.Application.Events

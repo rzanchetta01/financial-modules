@@ -33,5 +33,4 @@ public partial class Account : BaseEntity
 
     public virtual ICollection<AccountActivityHistory> AccountActivityHistories { get; set; } = [];
 
-    public virtual ICollection<Loan> Loans { get; set; } = [];
 }

@@ -8,19 +8,15 @@ namespace AppHouse.Accounts.Application.Handlers.Commands
 {
     public class CreateAccountCommandHandler
         (
-            IAccountService accountService,
-            IMediator mediator 
-        )
+            IAccountService accountService)
         : IRequestHandler<CreateAccountRequest, bool>
     {
         private readonly IAccountService _accountService = accountService;
-        private readonly IMediator _mediator = mediator;
 
 
         public async Task<bool> Handle(CreateAccountRequest request, CancellationToken cancellationToken)
         {
             await _accountService.Create(request.AccountDto, cancellationToken);
-            await _mediator.Publish(new TEventCreated<AccountDto>(request.AccountDto), cancellationToken);
             return true;
         }               
     }

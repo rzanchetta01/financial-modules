@@ -1,6 +1,6 @@
 ﻿using AppHouse.Loans.Application.Handlers.Commands;
+using AppHouse.Loans.Application.Requests.Commands;
 using AppHouse.Loans.Application.Validators.Commands;
-using AppHouse.Loans.Core;
 using AppHouse.Loans.Core.Interfaces;
 
 namespace AppHouse.Tests.Loans
@@ -18,7 +18,7 @@ namespace AppHouse.Tests.Loans
             var data = DummyData.DummyNewLoanDto;
             var request = new CreateLoanRequest(data);
             var token = CancellationToken.None;
-            var uat = new CreateLoanCommandHandler(_mockLoanService.Object, _mockMediator.Object);
+            var uat = new CreateLoanCommandHandler(_mockLoanService.Object);
 
             //Act
             var result = await uat.Handle(request, token);
@@ -29,20 +29,19 @@ namespace AppHouse.Tests.Loans
             Assert.Null(data.DateCreated);
             Assert.Null(data.IsActive);
             _mockLoanService.Verify(v => v.Create(It.IsAny<LoanDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
         public async Task FailCreateLoanCommandTest()
         {
             //Arrange
-            var data = DummyData.DummyExistingActiveLoanDto;//Existing loan should fail loan creation
+            var data = DummyData.DummyExistingActiveLoanDto;
             var request = new CreateLoanRequest(data);
             var token = CancellationToken.None;
 
             _mockLoanService.Setup(m => m.Create(data, token)).Throws(new Exception("fake exception"));
 
-            var uat = new CreateLoanCommandHandler(_mockLoanService.Object, _mockMediator.Object);
+            var uat = new CreateLoanCommandHandler(_mockLoanService.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
@@ -51,7 +50,6 @@ namespace AppHouse.Tests.Loans
             Assert.NotNull(data.DateCreated);
             Assert.NotNull(data.IsActive);
             _mockLoanService.Verify(v => v.Create(It.IsAny<LoanDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -78,7 +76,7 @@ namespace AppHouse.Tests.Loans
             var requestData = DummyData.DummyNewLoanDto;
             var newLoanDto = requestData with { MaxAmount = 0 };
 
-            var request = new CreateLoanRequest(newLoanDto); // Use newLoanDto here
+            var request = new CreateLoanRequest(newLoanDto);
             var token = CancellationToken.None;
             var uat = new CreateLoanValidator();
 
@@ -103,7 +101,7 @@ namespace AppHouse.Tests.Loans
 
             //Assert
             _mockLoanRepository.Verify(v => v.CreateAsync(It.IsAny<Loan>(), It.IsAny<CancellationToken>()), Times.Once);
-            
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -118,8 +116,8 @@ namespace AppHouse.Tests.Loans
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Create(data, token));
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<LoanDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
-        //precisa do [theory]? como no arquivo CreateAccountTests.cs?
     }
 }

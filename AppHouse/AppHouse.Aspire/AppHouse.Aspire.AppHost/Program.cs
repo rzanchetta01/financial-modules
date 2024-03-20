@@ -32,7 +32,12 @@ builder.AddProject<Projects.AppHouse_Gateway>("apphouse.gateway")
     .WithReference(dbMongo)
     .WithReference(dbRedis);
 
-#endregion
+builder.AddProject<Projects.AppHouse_Loans_WebApi>("apphouse.loans.webapi")
+    .WithReference(dbPostgres)
+    .WithReference(dbMongo)
+    .WithReference(dbRedis);
 
+#endregion
 #pragma warning restore CS8604 // Possible null reference argument end.
+
 builder.Build().Run();

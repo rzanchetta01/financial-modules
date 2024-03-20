@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AppHouse.Gateway\AppHouse.Gateway.csproj" />
+    <ProjectReference Include="..\..\AppHouse.Loans\AppHouse.Loans.WebApi\AppHouse.Loans.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

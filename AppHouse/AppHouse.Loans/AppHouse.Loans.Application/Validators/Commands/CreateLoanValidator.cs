@@ -1,4 +1,4 @@
-﻿using AppHouse.SharedKernel.SharedRequests.SharedCommands;
+﻿using AppHouse.Loans.Application.Requests.Commands;
 using FluentValidation;
 
 namespace AppHouse.Loans.Application.Validators.Commands

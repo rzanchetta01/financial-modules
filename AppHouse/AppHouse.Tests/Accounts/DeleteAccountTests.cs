@@ -13,7 +13,7 @@
             var data = Guid.NewGuid();
             var request = new DeleteAccountRequest(data);
             var token = CancellationToken.None;
-            var uat = new DeleteAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new DeleteAccountCommandHandler(_mockAccountService.Object);
 
             //Act
             var result = await uat.Handle(request, token);
@@ -21,7 +21,6 @@
             //Assert
             Assert.True(result);
             _mockAccountService.Verify(v => v.Purge(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -34,13 +33,12 @@
 
             _mockAccountService.Setup(m => m.Purge(data, token)).Throws(new Exception("fake exception"));
 
-            var uat = new DeleteAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new DeleteAccountCommandHandler(_mockAccountService.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
 
             _mockAccountService.Verify(v => v.Purge(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -84,13 +82,14 @@
             var data = Guid.NewGuid();
             var token = CancellationToken.None;
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act
             await uat.Purge(data, token);
     
             //Assert
             _mockAccountRepository.Verify(m => m.PurgeAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
@@ -102,12 +101,13 @@
 
             _mockAccountRepository.Setup(m => m.PurgeAsync(It.IsAny<Guid>(), token)).Throws(new Exception("fake exceptions"));
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act and Assert
             await Assert.ThrowsAsync<Exception>(() => uat.Purge(data, token));
 
             _mockAccountRepository.Verify(m => m.PurgeAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventPurged<Guid>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
     }
 }

@@ -20,3 +20,4 @@ global using AppHouse.Accounts.Application.Handlers.Queries;
 global using AppHouse.SharedKernel.SharedRequests.SharedQueries;
 global using Microsoft.EntityFrameworkCore;
 global using System.Reflection;
+global using AppHouse.Loans.Core;

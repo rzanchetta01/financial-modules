@@ -1,5 +1,8 @@
 ﻿using AppHouse.Accounts.Core.Interfaces;
 using AppHouse.SharedKernel.DTOs;
+using MediatR;
+using AppHouse.SharedKernel.BasicEvents;
+using System.Threading;
 
 
 namespace AppHouse.Accounts.Core
@@ -7,13 +10,14 @@ namespace AppHouse.Accounts.Core
 
     public class AccountService
         (
-        IAccountRepository accountRepository
+        IAccountRepository accountRepository,
+        IMediator mediator
         )
         : IAccountService
     {
 
         private readonly IAccountRepository _accountRepository = accountRepository;
-
+        private readonly IMediator _mediator = mediator;
 
         public async Task Create(AccountDto dto, CancellationToken token)
         {
@@ -22,6 +26,7 @@ namespace AppHouse.Accounts.Core
 
             var newDto = dto with { CreditScore = startAccountRating };
             await _accountRepository.CreateAsync(AccountMapping.Map(newDto), token);
+            await _mediator.Publish(new TEventCreated<AccountDto>(newDto), token);
         }
 
         public int DefineStartAccountRating(AccountDto account)
@@ -63,11 +68,13 @@ namespace AppHouse.Accounts.Core
         public async Task Purge(Guid Id, CancellationToken token)
         {
             await _accountRepository.PurgeAsync(Id, token);
+            await _mediator.Publish(new TEventPurged<Guid>(Id), token);
         }
 
         public async Task Update(AccountDto dto, CancellationToken token)
         {
             await _accountRepository.UpdateAsync(AccountMapping.Map(dto), token);
+            await _mediator.Publish(new TEventUpdated<AccountDto>(dto), token);
         }
     }
 

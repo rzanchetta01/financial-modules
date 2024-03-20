@@ -1,6 +1,6 @@
 ﻿using AppHouse.SharedKernel.BaseClasses;
 
-namespace AppHouse.SharedKernel.DTOs
+namespace AppHouse.Loans.Core
 {
     public record LoanDto(
         Guid CreatorAccountId,

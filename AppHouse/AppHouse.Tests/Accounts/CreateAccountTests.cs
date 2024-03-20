@@ -1,7 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using System.Net;
-using System.Reflection.Emit;
-using System.Xml.Linq;
+﻿
 
 namespace AppHouse.Tests.Accounts
 {
@@ -18,7 +15,7 @@ namespace AppHouse.Tests.Accounts
             var data = DummyData.DummyNewAccountDto;
             var request = new CreateAccountRequest(data);
             var token = CancellationToken.None;
-            var uat = new CreateAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new CreateAccountCommandHandler(_mockAccountService.Object);
             
             //Act
             var result = await uat.Handle(request, token);
@@ -29,20 +26,19 @@ namespace AppHouse.Tests.Accounts
             Assert.Null(data.DateCreated);
             Assert.Null(data.IsActive);
             _mockAccountService.Verify(v => v.Create(It.IsAny<AccountDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
         public async Task FailCreateAccountCommandTest()
         {
             //Arrange
-            var data = DummyData.DummyExistingActiveAccountDto;//Existing account should fail account creation
+            var data = DummyData.DummyExistingActiveAccountDto;
             var request = new CreateAccountRequest(data);
             var token = CancellationToken.None;
 
             _mockAccountService.Setup(m => m.Create(data, token)).Throws(new Exception("fake exception"));
 
-            var uat = new CreateAccountCommandHandler(_mockAccountService.Object, _mockMediator.Object);
+            var uat = new CreateAccountCommandHandler(_mockAccountService.Object);
 
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () => await uat.Handle(request, token));
@@ -51,7 +47,6 @@ namespace AppHouse.Tests.Accounts
             Assert.NotNull(data.DateCreated);
             Assert.NotNull(data.IsActive);
             _mockAccountService.Verify(v => v.Create(It.IsAny<AccountDto>(), It.IsAny<CancellationToken>()), Times.Once);
-            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Fact]
@@ -95,29 +90,31 @@ namespace AppHouse.Tests.Accounts
             var data = DummyData.DummyNewAccountDto;
             var token = CancellationToken.None;
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
             
             //Act
             await uat.Create(data, token);
 
             //Assert
             _mockAccountRepository.Verify(m => m.CreateAsync(It.IsAny<Account>(), token), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Once);
         }
 
         [Fact]
         public async Task FailCreateAccountServiceTest()
         {
             //Arrange
-            var data = DummyData.DummyExistingDisabledAccountDto; //Should fail with existing accounts
+            var data = DummyData.DummyExistingDisabledAccountDto;
             var token = CancellationToken.None;
 
             _mockAccountRepository.Setup(m => m.CreateAsync(It.IsAny<Account>(), token)).Throws(new Exception("fake exception"));
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
         
             //Act and Assert
             await Assert.ThrowsAnyAsync<Exception>(async () =>  await uat.Create(data, token));
             _mockAccountRepository.Verify(m => m.CreateAsync(It.IsAny<Account>(), token), Times.Once);
+            _mockMediator.Verify(v => v.Publish(It.IsAny<TEventCreated<AccountDto>>(), It.IsAny<CancellationToken>()), Times.Never);
         }
 
         [Theory]
@@ -146,7 +143,7 @@ namespace AppHouse.Tests.Accounts
                 IsActive: null
                 );
 
-            var uat = new AccountService(_mockAccountRepository.Object);
+            var uat = new AccountService(_mockAccountRepository.Object, _mockMediator.Object);
 
             //Act
             var result = uat.DefineStartAccountRating(dto);

@@ -81,6 +81,8 @@ namespace AppHouse.Tests
                 .BePublic()
                 .And()
                 .BeClasses()
+                .Or()
+                .BeEnums()
                 .GetResult();
 
             var interfaces = Types.InAssemblies(assemblies)

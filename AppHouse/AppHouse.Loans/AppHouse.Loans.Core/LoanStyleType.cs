@@ -1,4 +1,4 @@
-﻿namespace AppHouse.SharedKernel.Entities;
+﻿namespace AppHouse.Loans.Core;
 
 public enum LoanStyleType
 {

@@ -13,5 +13,4 @@ public partial class AccountActivityHistory : BaseEntity
 
     public virtual Account Account { get; set; } = null!;
 
-    public virtual Loan Loan { get; set; } = null!;
 }

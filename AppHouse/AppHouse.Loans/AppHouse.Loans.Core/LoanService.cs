@@ -29,13 +29,13 @@ namespace AppHouse.Loans.Core
             return null;
         }
 
-        public async Task<IEnumerable<LoanDto>> GetFeasibleLoans(AccountDto accountDto, DateOnly maxFeasibleLoanApplyDate, CancellationToken token)
+        public async Task<IEnumerable<LoanDto>> GetFeasibleLoans(decimal income, int creditScore, DateOnly maxFeasibleLoanApplyDate, CancellationToken token)
         {
-            if(accountDto.Income > 0 && accountDto.CreditScore > 0)
+            if(income > 0 && creditScore > 0)
             {
                 var queryResult = await _loanRepository.GetAllAvailableLoans(maxFeasibleLoanApplyDate, token);
                 if (queryResult.Any())
-                    return LoanMapping.Map(queryResult.Where(e => e.LoanQualityRating >= accountDto.CreditScore));
+                    return LoanMapping.Map(queryResult.Where(e => e.LoanQualityRating >= creditScore).ToList());
             }
 
             return [];
@@ -44,11 +44,13 @@ namespace AppHouse.Loans.Core
         public async Task Purge(Guid Id, CancellationToken token)
         {
             await _loanRepository.PurgeAsync(Id, token);
+            await _mediator.Publish(new TEventCreated<Guid>(Id), token);
         }
 
         public async Task Update(LoanDto dto, CancellationToken token)
         {
             await _loanRepository.CreateAsync(LoanMapping.Map(dto), token);
+            await _mediator.Publish(new TEventCreated<LoanDto>(dto), token);
         }
     }
 }

@@ -1,7 +1,6 @@
 using AppHouse.Accounts.Core;
 using AppHouse.Gateway.Endpoints;
 using AppHouse.Gateway.Middlewares;
-using AppHouse.Loans.Core;
 using AppHouse.SharedKernel.BaseClasses;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +12,6 @@ builder.AddServiceDefaults();
 builder.AddMongoDBClient("dbMongo");
 
 //Base Context Start
-AppHouse.Loans.Application.StartupServices.AddLoansStartup(builder.Services);
 builder.AddNpgsqlDbContext<BaseContext>("dbPostgres", e =>
 {
     e.ConnectionString = builder.Configuration.GetConnectionString("psql");
@@ -34,29 +32,11 @@ builder.AddNpgsqlDbContext<AccountsContext>("dbPostgres", e =>
 #endif
 });
 
-//Loan Start
-AppHouse.Loans.Application.StartupServices.AddLoansStartup(builder.Services);
-builder.AddNpgsqlDbContext<LoanContext>("dbPostgres", e =>
-{
-    e.ConnectionString = builder.Configuration.GetConnectionString("psql");
-    e.DbContextPooling = true;
-#if DEBUG
-    e.Metrics = true;
-    e.Tracing = true;
-    e.HealthChecks = true;
-    e.DbContextPooling = false;
-#endif
-});
-
-//Cache Start
-builder.Services.AddMemoryCache();//TODO change later to Redis
-
 
 //MediatR
 builder.Services.AddMediatR(c =>
 {
     c.RegisterServicesFromAssemblyContaining<AppHouse.Accounts.Application.Init>();
-    c.RegisterServicesFromAssemblyContaining<AppHouse.Loans.Application.Init>();
     
     //pipeline middlewares
     c.AddOpenBehavior(typeof(EventLoggingAndValidationMiddleware<,>));
@@ -95,7 +75,6 @@ app.UseMiddleware<GlobalErrorMiddleware>();
 
 #region Controllers
 AccountEndpoints.Setup(app);
-LoanEndpoints.Setup(app);
 #endregion
 
 app.Run();
